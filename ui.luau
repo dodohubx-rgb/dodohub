@@ -12,7 +12,7 @@
 --]]
 
 _P = {
-	genDate = "2025-09-09T20:31:31.051113400+00:00",
+	genDate = "2025-09-09T20:32:32.095278600+00:00",
 	cfg = "Library",
 	vers = "v0.0.0",
 }
@@ -1023,8 +1023,8 @@ return object
 end
 
 function binder.ReactiveTable(initial,onChange)
-local raw,
-proxy=table.clone(initial or{}),{}
+local raw=table.clone(initial or{})
+local proxy={}
 
 local mt={
 __index=function(_,key)
@@ -1102,12 +1102,12 @@ end,
 return proxy
 end
 
-return binder end function __DIST.d()local
+return binder end function __DIST.d()__DIST.load'b'
 
-types, 
-binder, 
 
-creator=__DIST.load'b', __DIST.load'c', {}
+local binder=__DIST.load'c'
+
+local creator={}
 
 function creator.Value(value)
 local callbacks={}
@@ -1218,8 +1218,8 @@ Lighting=(cast"Lighting"),
 local services=__DIST.load'e'
 
 
-local guiService,
-userInputService,
+local guiService=services.GuiService
+local userInputService=services.UserInputService
 
 
 
@@ -1257,38 +1257,38 @@ userInputService,
 
 
 
-responsive,
+local responsive={}
 
 
-DEFAULT_CONFIG,
+local DEFAULT_CONFIG={
+WindowSizes={
+Mobile=UDim2.fromScale(0.95,0.85),
+Tablet=UDim2.fromScale(0.8,0.75),
+Desktop=UDim2.fromOffset(850,530),
+Console=UDim2.fromScale(0.7,0.6),
+},
+UIScale={
+Mobile=1.2,
+Tablet=1.1,
+Desktop=1.0,
+Console=1.3,
+},
+Padding={
+Mobile=UDim.new(0,8),
+Tablet=UDim.new(0,12),
+Desktop=UDim.new(0,16),
+Console=UDim.new(0,20),
+},
+SidebarWidth={
+Mobile=160,
+Tablet=180,
+Desktop=200,
+Console=220,
+},
+}
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-BREAKPOINTS=services.GuiService,services.UserInputService,{},{WindowSizes={Mobile=UDim2.fromScale(0.95,0.85),Tablet=UDim2.fromScale(0.8,0.75),Desktop=UDim2.fromOffset(850,530),Console=UDim2.fromScale(0.7,0.6),},UIScale={Mobile=1.2,Tablet=1.1,Desktop=1.0,Console=1.3,},Padding={Mobile=UDim.new(0,8),Tablet=UDim.new(0,12),Desktop=UDim.new(0,16),Console=UDim.new(0,20),},SidebarWidth={Mobile=160,Tablet=180,Desktop=200,Console=220,},},{
+local BREAKPOINTS={
 Mobile={MaxWidth=768,MaxHeight=1024},
 Tablet={MaxWidth=1024,MaxHeight=768},
 Desktop={MinWidth=1025},
@@ -1303,11 +1303,11 @@ end
 
 
 function responsive.DetectDeviceType()
-local viewportSize,
-isTouchEnabled,
-isMouseEnabled,
-isKeyboardEnabled,
-isGamepadEnabled=responsive.GetViewportSize(),userInputService.TouchEnabled,userInputService.MouseEnabled,userInputService.KeyboardEnabled,userInputService.GamepadEnabled
+local viewportSize=responsive.GetViewportSize()
+local isTouchEnabled=userInputService.TouchEnabled
+local isMouseEnabled=userInputService.MouseEnabled
+local isKeyboardEnabled=userInputService.KeyboardEnabled
+local isGamepadEnabled=userInputService.GamepadEnabled
 
 
 if isGamepadEnabled and not isTouchEnabled and not isMouseEnabled then
@@ -1352,29 +1352,29 @@ end
 
 
 function responsive.GetWindowSize(customConfig)
-local deviceType,
-config=responsive.DetectDeviceType(),responsive.GetConfig(customConfig)
+local deviceType=responsive.DetectDeviceType()
+local config=responsive.GetConfig(customConfig)
 return config.WindowSizes[deviceType]
 end
 
 
 function responsive.GetUIScale(customConfig)
-local deviceType,
-config=responsive.DetectDeviceType(),responsive.GetConfig(customConfig)
+local deviceType=responsive.DetectDeviceType()
+local config=responsive.GetConfig(customConfig)
 return config.UIScale[deviceType]
 end
 
 
 function responsive.GetPadding(customConfig)
-local deviceType,
-config=responsive.DetectDeviceType(),responsive.GetConfig(customConfig)
+local deviceType=responsive.DetectDeviceType()
+local config=responsive.GetConfig(customConfig)
 return config.Padding[deviceType]
 end
 
 
 function responsive.GetSidebarWidth(customConfig)
-local deviceType,
-config=responsive.DetectDeviceType(),responsive.GetConfig(customConfig)
+local deviceType=responsive.DetectDeviceType()
+local config=responsive.GetConfig(customConfig)
 return config.SidebarWidth[deviceType]
 end
 
@@ -1401,11 +1401,11 @@ end
 
 
 function responsive.GetMaxWindowSize()
-local viewportSize,
-safeInsets=responsive.GetViewportSize(),responsive.GetSafeAreaInsets()
+local viewportSize=responsive.GetViewportSize()
+local safeInsets=responsive.GetSafeAreaInsets()
 
-local maxWidth,
-maxHeight=viewportSize.X-safeInsets.Left-safeInsets.Right,viewportSize.Y-safeInsets.Top-safeInsets.Bottom
+local maxWidth=viewportSize.X-safeInsets.Left-safeInsets.Right
+local maxHeight=viewportSize.Y-safeInsets.Top-safeInsets.Bottom
 
 return UDim2.fromOffset(maxWidth,maxHeight)
 end
@@ -4873,23 +4873,23 @@ Light=__DIST.load'i',
 
 
 
-local services,
-creator=__DIST.load'e',__DIST.load'd'
+local services=__DIST.load'e'
+local creator=__DIST.load'd'
 
 
-local workspace,
-lighting,
+local workspace=services.Workspace
+local lighting=services.Lighting
 
-create,map=services.Workspace,services.Lighting,creator.Create,function(
+local create=creator.Create local map=function(
 
 
 value, inMin, inMax, outMin, outMax)
-return(value-inMin)*(outMax-outMin)/(inMax-inMin)+outMin end local viewportPointToWorld, getOffset=function(
+return(value-inMin)*(outMax-outMin)/(inMax-inMin)+outMin end local viewportPointToWorld=function(
 
 
 location, distance)
 local unitRay=workspace.CurrentCamera:ScreenPointToRay(location.X,location.Y)
-return unitRay.Origin+unitRay.Direction*distance end, function()
+return unitRay.Origin+unitRay.Direction*distance end local getOffset=function()
 
 
 
@@ -4899,32 +4899,32 @@ return map(viewportSizeY,0,2560,8,56)end local createBlur=function(
 
 
 distance)
-local blurEffects,
-connections,
+local blurEffects=Instance.new("Folder",workspace.CurrentCamera)
+local connections={}
 
-triPositions,
+local triPositions={
+topLeft=Vector2.new(),
+topRight=Vector2.new(),
+bottomRight=Vector2.new(),
+}
+local model=(create"Part"{
+Color=Color3.new(0,0,0),
+Material=Enum.Material.Glass,
+Size=Vector3.new(1,1,0),
+Anchored=true,
+CanTouch=false,
+CanCollide=false,
+CanQuery=false,
+Locked=true,
+CastShadow=false,
+Transparency=0.98,
 
-
-
-
-model,
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-effect=Instance.new("Folder",workspace.CurrentCamera),{},{topLeft=Vector2.new(),topRight=Vector2.new(),bottomRight=Vector2.new(),},(create"Part"{Color=Color3.new(0,0,0),Material=Enum.Material.Glass,Size=Vector3.new(1,1,0),Anchored=true,CanTouch=false,CanCollide=false,CanQuery=false,Locked=true,CastShadow=false,Transparency=0.98,create"SpecialMesh"{MeshType=Enum.MeshType.Brick,Offset=Vector3.new(0,0,-1E-6),},}),create"DepthOfFieldEffect"{
+create"SpecialMesh"{
+MeshType=Enum.MeshType.Brick,
+Offset=Vector3.new(0,0,-1E-6),
+},
+})
+local effect=create"DepthOfFieldEffect"{
 FarIntensity=0,
 NearIntensity=1,
 InFocusRadius=0.1,
@@ -4932,28 +4932,28 @@ Parent=lighting,
 }
 local mesh=model:FindFirstChildWhichIsA"SpecialMesh"
 
-distance=distance or 0.001 local updatePositions, render=function(
+distance=distance or 0.001 local updatePositions=function(
 
 size, position)
 triPositions.topLeft=position
 triPositions.topRight=position+Vector2.new(size.X,0)
-triPositions.bottomRight=position+size end, function()
+triPositions.bottomRight=position+size end local render=function()
 
 
 
 local camera=workspace.CurrentCamera
-local cameraTransform,
+local cameraTransform=if camera then camera.CFrame else CFrame.identity
 
-topLeft,
-topRight,
-bottomRight=if camera then camera.CFrame else CFrame.identity,triPositions.topLeft,triPositions.topRight,triPositions.bottomRight
+local topLeft=triPositions.topLeft
+local topRight=triPositions.topRight
+local bottomRight=triPositions.bottomRight
 
-local topLeft3D,
-topRight3D,
-bottomRight3D=viewportPointToWorld(topLeft,distance),viewportPointToWorld(topRight,distance),viewportPointToWorld(bottomRight,distance)
+local topLeft3D=viewportPointToWorld(topLeft,distance)
+local topRight3D=viewportPointToWorld(topRight,distance)
+local bottomRight3D=viewportPointToWorld(bottomRight,distance)
 
-local width,
-height=(topRight3D-topLeft3D).Magnitude,(topRight3D-bottomRight3D).Magnitude
+local width=(topRight3D-topLeft3D).Magnitude
+local height=(topRight3D-bottomRight3D).Magnitude
 
 model.CFrame=CFrame.fromMatrix(
 (topLeft3D+bottomRight3D)/2,
@@ -4964,16 +4964,16 @@ cameraTransform.ZVector
 
 if mesh then
 mesh.Scale=Vector3.new(width,height,0)
-end end local onChange, renderOnChange=function(
+end end local onChange=function(
 
 
 rbx)
 local offset=getOffset()
-local size,
-position=rbx.AbsoluteSize-Vector2.new(offset,offset),rbx.AbsolutePosition+Vector2.new(offset/2,offset/2)
+local size=rbx.AbsoluteSize-Vector2.new(offset,offset)
+local position=rbx.AbsolutePosition+Vector2.new(offset/2,offset/2)
 
 updatePositions(size,position)
-task.spawn(render)end, function()
+task.spawn(render)end local renderOnChange=function()
 
 
 
@@ -5008,8 +5008,8 @@ return onChange,model end
 
 
 return function(frame,distance)
-local blur,
-onChange,model={},createBlur(distance)
+local blur={}
+local onChange,model=createBlur(distance)
 
 blur.SetVisibility=function(Value)
 model.Transparency=Value and 0.98 or 1
@@ -5044,16 +5044,16 @@ UIBlur=__DIST.load'k',
 
 return function(self)
 
-local creator,
-services=__DIST.load'd',__DIST.load'e'
+local creator=__DIST.load'd'
+local services=__DIST.load'e'
 
 
-local create,
+local create=creator.Create
 
-tweenService,
+local tweenService=services.TweenService
 
 
-structures=creator.Create,services.TweenService,{}
+local structures={}
 
 
 structures.Body=(create"Frame"{
@@ -5159,9 +5159,9 @@ structures.Layout=(structures.Body:FindFirstChild"UIListLayout")
 structures.Field=(structures.Body:FindFirstChild"Field")
 structures.FieldPadding=(structures.Field:FindFirstChild"UIPadding")
 
-local
-enter,
-leave,currentTween=TweenInfo.new(0.13,Enum.EasingStyle.Sine,Enum.EasingDirection.Out),(TweenInfo.new(0.2,Enum.EasingStyle.Sine,Enum.EasingDirection.Out))
+local currentTween
+local enter=TweenInfo.new(0.13,Enum.EasingStyle.Sine,Enum.EasingDirection.Out)
+local leave=TweenInfo.new(0.2,Enum.EasingStyle.Sine,Enum.EasingDirection.Out)
 
 structures.Field.Focused:Connect(function()
 if currentTween then
@@ -5204,22 +5204,22 @@ end end function __DIST.n()
 
 return function(self)
 
-local creator,
-textField=__DIST.load'd',__DIST.load'm'(self)
+local creator=__DIST.load'd'
+local textField=__DIST.load'm'(self)
 
 
-local create,
+local create=creator.Create
 
 
-
-rawHistory,
-currentIndex,
-structures,getBounds,window=creator.Create,{},0,{},function(
+local window
+local rawHistory={}
+local currentIndex=0
+local structures={}local getBounds=function(
 
 
 frame)
-local pos,
-size=frame.AbsolutePosition,frame.AbsoluteSize
+local pos=frame.AbsolutePosition
+local size=frame.AbsoluteSize
 return{
 Left=pos.X,
 Right=pos.X+size.X,
@@ -5417,14 +5417,14 @@ ImageTransparency=self.Theme.Text.Tertiary[2],
 },
 __contextKeys={
 ImageColor3=function()
-local backable,
-theme=currentIndex>1,window.Theme.Text
+local backable=currentIndex>1
+local theme=window.Theme.Text
 
 return(backable and theme.Secondary[1].Value)or theme.Tertiary[1].Value
 end,
 ImageTransparency=function()
-local backable,
-theme=currentIndex>1,window.Theme.Text
+local backable=currentIndex>1
+local theme=window.Theme.Text
 
 return(backable and theme.Secondary[2].Value)or theme.Tertiary[2].Value
 end,
@@ -5462,14 +5462,14 @@ ImageTransparency=self.Theme.Text.Tertiary[2],
 },
 __contextKeys={
 ImageColor3=function()
-local forwardable,
-theme=currentIndex<#rawHistory,window.Theme.Text
+local forwardable=currentIndex<#rawHistory
+local theme=window.Theme.Text
 
 return(forwardable and theme.Secondary[1].Value)or theme.Tertiary[1].Value
 end,
 ImageTransparency=function()
-local forwardable,
-theme=currentIndex<#rawHistory,window.Theme.Text
+local forwardable=currentIndex<#rawHistory
+local theme=window.Theme.Text
 
 return(forwardable and theme.Secondary[2].Value)or theme.Tertiary[2].Value
 end,
@@ -5613,10 +5613,10 @@ if not window then
 return
 end
 
-local backImage,
-forwardImage,
+local backImage=structures.Back:FindFirstChild"Image"
+local forwardImage=structures.Forward:FindFirstChild"Image"
 
-theme=structures.Back:FindFirstChild"Image",structures.Forward:FindFirstChild"Image",window.Theme.Text
+local theme=window.Theme.Text
 
 if backImage then
 local backable=currentIndex>1
@@ -5635,7 +5635,7 @@ structures.Forward.Interactable=forwardable
 end end
 
 
-local navigationHistory,setPage=setmetatable({},{
+local navigationHistory=setmetatable({},{
 __newindex=function(_,key,value)
 rawset(rawHistory,key,value)
 
@@ -5647,7 +5647,7 @@ end,
 __len=function()
 return#rawHistory
 end,
-}),function(
+})local setPage=function(
 
 page)
 if window and window.Tabs then
@@ -5658,7 +5658,7 @@ else
 tab.Selected=false
 end
 end
-end end local attachHandlers, checkAccessoryBounds=function()
+end end local attachHandlers=function()
 
 
 
@@ -5676,7 +5676,7 @@ currentIndex+=1
 setPage(rawHistory[currentIndex])
 updateNavStates()
 end
-end)end, function()
+end)end local checkAccessoryBounds=function()
 
 
 
@@ -5685,8 +5685,8 @@ if not trailing:IsA"GuiObject"then
 continue
 end
 
-local trailingBounds,
-isVisible=getBounds(trailing),true
+local trailingBounds=getBounds(trailing)
+local isVisible=true
 
 for _,leading in pairs(structures.Leading:GetChildren())do
 if not leading:IsA"GuiObject"then
@@ -5734,10 +5734,10 @@ return function(object,minScale)
 local creator=__DIST.load'd'
 
 
-local create,
+local create=creator.Create
 
 
-structures=creator.Create,{}
+local structures={}
 
 
 structures.Handles=(create"Folder"{
@@ -5923,9 +5923,9 @@ structures.SE=structures.Handles:FindFirstChild"SE":FindFirstChild"UIDragDetecto
 structures.NW=structures.Handles:FindFirstChild"NW":FindFirstChild"UIDragDetector"
 structures.SW=structures.Handles:FindFirstChild"SW":FindFirstChild"UIDragDetector"
 
-local
-
-resizeHandler,dragStartPosition,dragStartSize={}
+local dragStartPosition
+local dragStartSize
+local resizeHandler={}
 
 resizeHandler.__index=resizeHandler local resizeObject=function(
 
@@ -6006,39 +6006,39 @@ end end function __DIST.p()__DIST.load'b'
 
 return function(self,properties)
 
-local effects,
-services,
-creator,
-binder,
-responsive,
+local effects=__DIST.load'l'
+local services=__DIST.load'e'
+local creator=__DIST.load'd'
+local binder=__DIST.load'c'
+local responsive=__DIST.load'f'
 
-titleBar,addToHistory=__DIST.load'l',__DIST.load'e',__DIST.load'd',__DIST.load'c',__DIST.load'f',__DIST.load'n'(self)
-local resizeHandler,
-
-
-create,
-
-userInputService,
-tweenService,
+local titleBar,addToHistory=__DIST.load'n'(self)
+local resizeHandler=__DIST.load'o'
 
 
-parent=__DIST.load'o',creator.Create,services.UserInputService,services.TweenService,self.__container or self.__instance or self
-local window,
+local create=creator.Create
+
+local userInputService=services.UserInputService
+local tweenService=services.TweenService
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-structures,originalSize,originalPosition,originalPosition2,minimizing,dragging,resizeClient=create"Frame"{Name="Window",BackgroundTransparency=1,BorderSizePixel=0,Size=UDim2.fromScale(1,1),AnchorPoint=Vector2.new(0.5,0.5),Position=UDim2.fromScale(0.5,0.5),Parent=parent,}.__instance,{}
+local parent=self.__container or self.__instance or self
+local window=create"Frame"{
+Name="Window",
+BackgroundTransparency=1,
+BorderSizePixel=0,
+Size=UDim2.fromScale(1,1),
+AnchorPoint=Vector2.new(0.5,0.5),
+Position=UDim2.fromScale(0.5,0.5),
+Parent=parent,
+}.__instance
+local originalSize
+local originalPosition
+local originalPosition2
+local minimizing
+local dragging
+local resizeClient
+local structures={}
 
 
 properties=properties or{}
@@ -6520,11 +6520,11 @@ structures.BlurModel.SetVisibility(false)
 end
 end
 
-local tweenInfo,
-bodyTarget,
-
-
-scaleTarget=TweenInfo.new(0.25,Enum.EasingStyle.Exponential,Enum.EasingDirection.Out),{Position=value and UDim2.new(0.5,0,0.5,structures.Body.AbsoluteSize.Y*2)or originalPosition2,},{Scale=value and 0 or 1}
+local tweenInfo=TweenInfo.new(0.25,Enum.EasingStyle.Exponential,Enum.EasingDirection.Out)
+local bodyTarget={
+Position=value and UDim2.new(0.5,0,0.5,structures.Body.AbsoluteSize.Y*2)or originalPosition2,
+}
+local scaleTarget={Scale=value and 0 or 1}
 
 if useTween then
 minimizing=true
@@ -6560,12 +6560,12 @@ else
 dragging=false
 end
 
-local tweenInfo,
-bodyTarget,
-
-
-
-cornerTarget=TweenInfo.new(0.5,Enum.EasingStyle.Exponential,Enum.EasingDirection.Out),{Size=value and UDim2.fromScale(1,1)or originalSize,Position=value and UDim2.fromScale(0.5,0.5)or originalPosition,},{CornerRadius=value and UDim.new(0,0)or UDim.new(0,10)}
+local tweenInfo=TweenInfo.new(0.5,Enum.EasingStyle.Exponential,Enum.EasingDirection.Out)
+local bodyTarget={
+Size=value and UDim2.fromScale(1,1)or originalSize,
+Position=value and UDim2.fromScale(0.5,0.5)or originalPosition,
+}
+local cornerTarget={CornerRadius=value and UDim.new(0,0)or UDim.new(0,10)}
 
 if tween then
 tweenService:Create(structures.Body.__instance,tweenInfo,bodyTarget):Play()
@@ -6618,12 +6618,12 @@ local toggled=true local toggle=function()
 toggled=not toggled
 
 local sidebarWidth=responsive.GetSidebarWidth()
-local marginsTargetSize,
-sidebarTargetSize,
-contentTargetSize,
-cornerLeftSize,
+local marginsTargetSize=toggled and UDim.new(0,0)or UDim.new(0,-sidebarWidth)
+local sidebarTargetSize=toggled and UDim2.new(0,sidebarWidth,1,0)or UDim2.new(0,0,1,0)
+local contentTargetSize=toggled and UDim2.new(1,-(sidebarWidth+1),1,0)or UDim2.new(1,0,1,0)
+local cornerLeftSize=toggled and UDim2.new(0,10,1,0)or UDim2.new(0,10,0.5,0)
 
-tweenInfo=toggled and UDim.new(0,0)or UDim.new(0,-sidebarWidth),toggled and UDim2.new(0,sidebarWidth,1,0)or UDim2.new(0,0,1,0),toggled and UDim2.new(1,-(sidebarWidth+1),1,0)or UDim2.new(1,0,1,0),toggled and UDim2.new(0,10,1,0)or UDim2.new(0,10,0.5,0),TweenInfo.new(0.6,Enum.EasingStyle.Exponential,Enum.EasingDirection.Out)
+local tweenInfo=TweenInfo.new(0.6,Enum.EasingStyle.Exponential,Enum.EasingDirection.Out)
 
 structures.Separator.Visible=toggled and true or false
 structures.CornerClip.Visible=toggled and true
@@ -6663,8 +6663,8 @@ structures.Titlebar.SidebarButton.MouseButton1Click:Connect(toggle)
 end
 
 do
-local field,
-pageCaches=structures.Titlebar.SearchField.Field,{}local toCache, fromCache=function(
+local field=structures.Titlebar.SearchField.Field
+local pageCaches={}local toCache=function(
 
 page, descendants)
 local cache={}
@@ -6673,7 +6673,7 @@ if child:IsA"GuiObject"then
 cache[child]=child.Visible
 end
 end
-pageCaches[page]=cache end, function(
+pageCaches[page]=cache end local fromCache=function(
 
 
 page, descendants)
@@ -6708,8 +6708,8 @@ fromCache(page,descendants)
 return
 end
 
-local matches,
-items={},{}
+local matches={}
+local items={}
 
 for _,child in ipairs(descendants)do
 if child:IsA"GuiObject"then
@@ -6773,9 +6773,9 @@ end)
 end
 
 do
-local exit,
-minimize,
-zoom=(structures.WindowControls:FindFirstChild"Exit"),(structures.WindowControls:FindFirstChild"Minimize"),(structures.WindowControls:FindFirstChild"Zoom")local rollOver=function()
+local exit=(structures.WindowControls:FindFirstChild"Exit")
+local minimize=(structures.WindowControls:FindFirstChild"Minimize")
+local zoom=(structures.WindowControls:FindFirstChild"Zoom")local rollOver=function()
 
 
 exit:FindFirstChild"Icon".Visible=structures.WindowControls.GuiState~=Enum.GuiState.Hover
@@ -6822,10 +6822,10 @@ structures.WindowControls.MouseLeave:Connect(rollOver)
 end
 
 do
-local
-
-
-boundingUi,inputPos,startPos,connection=(structures.LayoutIgnore:FindFirstChild"TopArea")
+local inputPos
+local startPos
+local connection
+local boundingUi=structures.LayoutIgnore:FindFirstChild"TopArea"
 
 boundingUi.InputBegan:Connect(function(input)
 if
@@ -6943,18 +6943,18 @@ end end function __DIST.q()__DIST.load'b'
 
 return function(self,properties)
 
-local creator,
-binder,
-services=__DIST.load'd',__DIST.load'c',__DIST.load'e'
+local creator=__DIST.load'd'
+local binder=__DIST.load'c'
+local services=__DIST.load'e'
 
 
-local create,
+local create=creator.Create
 
-tweenService,
+local tweenService=services.TweenService
 
 
-parent,
-structures,watchAutosize=creator.Create,services.TweenService,self.Type=="Window"and self.Structures.SidebarList or self.__instance or self,{},function(
+local parent=self.Type=="Window"and self.Structures.SidebarList or self.__instance or self
+local structures={}local watchAutosize=function(
 
 
 structure, connections, update, ...)
@@ -7127,8 +7127,8 @@ end,
 Expanded=function(state,tween)
 tween=(tween==nil and true)or false
 
-local sidebarGroup,
-disclosureImage=structures.SidebarGroup.__instance,structures.DisclosureImage
+local sidebarGroup=structures.SidebarGroup.__instance
+local disclosureImage=structures.DisclosureImage
 
 sidebarGroup.AutomaticSize=Enum.AutomaticSize.None
 
@@ -7189,16 +7189,16 @@ end end function __DIST.r()__DIST.load'b'
 
 return function(self,properties)
 
-local creator,
-binder=__DIST.load'd',__DIST.load'c'
+local creator=__DIST.load'd'
+local binder=__DIST.load'c'
 
 
-local create,
-window,
+local create=creator.Create
+local window=self.Type=="Window"and self or self.__window
 
 
-parent,
-structures=creator.Create,self.Type=="Window"and self or self.__window,self.Type=="Window"and self.Structures.SidebarList or self.Type=="Tab"and self.__instance.Parent or self.__instance or self,{}
+local parent=self.Type=="Window"and self.Structures.SidebarList or self.Type=="Tab"and self.__instance.Parent or self.__instance or self
+local structures={}
 
 
 properties=properties or{}
@@ -7453,10 +7453,10 @@ return function(self)
 local creator=__DIST.load'd'
 
 
-local create,
+local create=creator.Create
 
 
-structures=creator.Create,{}
+local structures={}
 
 
 structures.Body=(create"Frame"{
@@ -7539,17 +7539,17 @@ end end function __DIST.t()__DIST.load'b'
 
 return function(self,properties)
 
-local creator,
-binder,
+local creator=__DIST.load'd'
+local binder=__DIST.load'c'
 
-titleStack=__DIST.load'd',__DIST.load'c',__DIST.load's'
-
-
-local create,
+local titleStack=__DIST.load's'
 
 
-parent,
-structures=creator.Create,self.__container or self.__instance or self,titleStack(self)
+local create=creator.Create
+
+
+local parent=self.__container or self.__instance or self
+local structures=titleStack(self)
 
 
 properties=properties or{}
@@ -7621,17 +7621,17 @@ end end function __DIST.u()__DIST.load'b'
 
 return function(self,properties)
 
-local creator,
-binder=__DIST.load'd',__DIST.load'c'
+local creator=__DIST.load'd'
+local binder=__DIST.load'c'
 
 
-local create,
+local create=creator.Create
 
 
-parent,
-structures,
-queue,
-entries=creator.Create,self.__container or self.__instance or self,{},{},{}
+local parent=self.__container or self.__instance or self
+local structures={}
+local queue={}
+local entries={}
 
 
 properties=properties or{}
@@ -7688,8 +7688,8 @@ object.Structures=structures local updateDivs=function()
 
 
 for i,entry in ipairs(entries)do
-local currentVisible,
-nextEntry=entry.section.Visible,entries[i+1]
+local currentVisible=entry.section.Visible
+local nextEntry=entries[i+1]
 local nextVisible=nextEntry and nextEntry.section.Visible
 
 entry.divider.Visible=currentVisible and nextVisible==true
@@ -7722,15 +7722,15 @@ end end function __DIST.v()__DIST.load'b'
 
 return function(self,properties)
 
-local creator,
-binder=__DIST.load'd',__DIST.load'c'
+local creator=__DIST.load'd'
+local binder=__DIST.load'c'
 
 
-local create,
+local create=creator.Create
 
 
-parent,
-structures=creator.Create,self.__container or self.__instance or self,{}
+local parent=self.__container or self.__instance or self
+local structures={}
 
 
 properties=properties or{}
@@ -7830,10 +7830,10 @@ structures.LeftAccessories=(structures.Body:FindFirstChild"LeftAccessory")
 structures.RightAccessories=(structures.Body:FindFirstChild"RightAccessory")local updateAccessories=function()
 
 
-local parentWidth,
-rightWidth,
+local parentWidth=structures.LeftAccessories.Parent.AbsoluteSize.X
+local rightWidth=structures.RightAccessories.AbsoluteSize.X
 
-minLeftWidth=structures.LeftAccessories.Parent.AbsoluteSize.X,structures.RightAccessories.AbsoluteSize.X,75
+local minLeftWidth=75
 local calculatedLeftWidth=math.max(parentWidth-rightWidth,minLeftWidth)
 
 if parentWidth-rightWidth<minLeftWidth then
@@ -7880,15 +7880,15 @@ end end function __DIST.w()__DIST.load'b'
 
 return function(self,properties)
 
-local creator,
-binder=__DIST.load'd',__DIST.load'c'
+local creator=__DIST.load'd'
+local binder=__DIST.load'c'
 
 
-local create,
+local create=creator.Create
 
 
-parent,
-structures=creator.Create,self.__container or self.__instance or self,{}
+local parent=self.__container or self.__instance or self
+local structures={}
 
 
 properties=properties or{}
@@ -7941,15 +7941,15 @@ end end function __DIST.x()__DIST.load'b'
 
 return function(self,properties)
 
-local creator,
-binder=__DIST.load'd',__DIST.load'c'
+local creator=__DIST.load'd'
+local binder=__DIST.load'c'
 
 
-local create,
+local create=creator.Create
 
 
-parent,
-structures=creator.Create,self.__container or self.__instance or self,{}
+local parent=self.__container or self.__instance or self
+local structures={}
 
 
 properties=properties or{}
@@ -8002,9 +8002,9 @@ end end function __DIST.y()__DIST.load'b'
 
 return function(self,properties)
 
-local binder,
+local binder=__DIST.load'c'
 
-titleStack=__DIST.load'c',__DIST.load's'
+local titleStack=__DIST.load's'
 
 
 local structures=titleStack(self)
@@ -8039,15 +8039,15 @@ end end function __DIST.z()__DIST.load'b'
 
 return function(self,properties)
 
-local creator,
-binder=__DIST.load'd',__DIST.load'c'
+local creator=__DIST.load'd'
+local binder=__DIST.load'c'
 
 
-local create,
+local create=creator.Create
 
 
-parent,
-structures=creator.Create,self.__container or self.__instance or self,{}
+local parent=self.__container or self.__instance or self
+local structures={}
 
 
 properties=properties or{}
@@ -8089,15 +8089,15 @@ end end function __DIST.A()__DIST.load'b'
 
 return function(self,properties)
 
-local creator,
-binder=__DIST.load'd',__DIST.load'c'
+local creator=__DIST.load'd'
+local binder=__DIST.load'c'
 
 
-local create,
+local create=creator.Create
 
 
-parent,
-structures=creator.Create,self.__container or self.__instance or self,{}
+local parent=self.__container or self.__instance or self
+local structures={}
 
 
 properties=properties or{}
@@ -8154,19 +8154,19 @@ end end function __DIST.B()__DIST.load'b'
 
 return function(self,properties)
 
-local creator,
-binder,
-services=__DIST.load'd',__DIST.load'c',__DIST.load'e'
+local creator=__DIST.load'd'
+local binder=__DIST.load'c'
+local services=__DIST.load'e'
 
 
-local create,
+local create=creator.Create
 
-tweenService,
+local tweenService=services.TweenService
 
 
-parent,
-theme,
-structures=creator.Create,services.TweenService,self.__container or self.__instance or self,self.Theme.Controls.Toggle,{}
+local parent=self.__container or self.__instance or self
+local theme=self.Theme.Controls.Toggle
+local structures={}
 
 
 properties=properties or{}
@@ -8263,9 +8263,9 @@ local bindings={
 Value=function(value,instant)
 instant=(instant==nil and true)or false
 
-local tweenInfo,
-knobGoal,
-switchGoal=TweenInfo.new(0.4,Enum.EasingStyle.Exponential,Enum.EasingDirection.Out),{Position=value and UDim2.new(0,13,0.5,0)or UDim2.new(0,1,0.5,0)},{
+local tweenInfo=TweenInfo.new(0.4,Enum.EasingStyle.Exponential,Enum.EasingDirection.Out)
+local knobGoal={Position=value and UDim2.new(0,13,0.5,0)or UDim2.new(0,1,0.5,0)}
+local switchGoal={
 ImageColor3=value and theme.SwitchOn[1].Value or theme.SwitchOff[1].Value,
 ImageTransparency=value and theme.SwitchOn[2].Value or theme.SwitchOff[2].Value,
 }
@@ -8308,10 +8308,10 @@ end end function __DIST.C()__DIST.load'b'
 
 return function(self,properties)
 
-local binder,
+local binder=__DIST.load'c'
 
 
-structures=__DIST.load'c',__DIST.load'm'(self)
+local structures=__DIST.load'm'(self)
 
 
 properties=properties or{}
@@ -8369,14 +8369,14 @@ end end function __DIST.D()__DIST.load'b'
 
 return function(self,properties)
 
-local binder,
-services=__DIST.load'c',__DIST.load'e'
+local binder=__DIST.load'c'
+local services=__DIST.load'e'
 
 
-local userInputService,
+local userInputService=services.UserInputService
 
 
-structures=services.UserInputService,__DIST.load'm'(self)
+local structures=__DIST.load'm'(self)
 
 
 properties=properties or{}
@@ -8442,17 +8442,17 @@ end end function __DIST.E()__DIST.load'b'
 
 return function(self,properties)
 
-local creator,
-binder=__DIST.load'd',__DIST.load'c'
+local creator=__DIST.load'd'
+local binder=__DIST.load'c'
 
 
-local create,
+local create=creator.Create
 
 
-parent,
-theme,
-dragStart,
-structures=creator.Create,self.__container or self.__instance or self,self.Theme.Controls.Slider,0,{}
+local parent=self.__container or self.__instance or self
+local theme=self.Theme.Controls.Slider
+local dragStart=0
+local structures={}
 
 
 properties=properties or{}
@@ -8614,15 +8614,15 @@ Parent=structures.Thumb,
 local object
 local bindings={
 Value=function(value)
-local sliderWidth,
-thumbWidth=structures.Body.AbsoluteSize.X,structures.Thumb.AbsoluteSize.X
-local thumbHalfWidth,
+local sliderWidth=structures.Body.AbsoluteSize.X
+local thumbWidth=structures.Thumb.AbsoluteSize.X
+local thumbHalfWidth=thumbWidth/2
 
-min,
-max=thumbWidth/2,properties.Minimum,properties.Maximum
-local alpha,
+local min=properties.Minimum
+local max=properties.Maximum
+local alpha=(value-min)/(max-min)
 
-availableWidth=(value-min)/(max-min),sliderWidth-thumbWidth
+local availableWidth=sliderWidth-thumbWidth
 local fillWidth=thumbHalfWidth+(availableWidth*alpha)
 
 structures.Fill.Size=UDim2.new(0,fillWidth,1,0)
@@ -8645,14 +8645,14 @@ dragStart=structures.Fill.AbsoluteSize.X
 end)
 
 structures.Dragger.DragContinue:Connect(function()
-local sliderWidth,
-thumbWidth=structures.Body.AbsoluteSize.X,structures.Thumb.AbsoluteSize.X
+local sliderWidth=structures.Body.AbsoluteSize.X
+local thumbWidth=structures.Thumb.AbsoluteSize.X
 local thumbHalfWidth=thumbWidth/2
 
-local minX,
-maxX,
+local minX=thumbHalfWidth
+local maxX=sliderWidth-thumbHalfWidth
 
-deltaPixels=thumbHalfWidth,sliderWidth-thumbHalfWidth,structures.Dragger.DragUDim2.X.Offset
+local deltaPixels=structures.Dragger.DragUDim2.X.Offset
 local newCenterX=dragStart+deltaPixels
 local clampedCenterX=math.clamp(newCenterX,minX,maxX)
 
@@ -8670,19 +8670,19 @@ end end function __DIST.F()__DIST.load'b'
 
 return function(self,properties)
 
-local creator,
-binder,
-services=__DIST.load'd',__DIST.load'c',__DIST.load'e'
+local creator=__DIST.load'd'
+local binder=__DIST.load'c'
+local services=__DIST.load'e'
 
 
-local create,
+local create=creator.Create
 
-tweenService,
+local tweenService=services.TweenService
 
 
-parent,
-theme,
-structures=creator.Create,services.TweenService,self.__container or self.__instance or self,self.Theme.Controls.Button,{}
+local parent=self.__container or self.__instance or self
+local theme=self.Theme.Controls.Button
+local structures={}
 
 
 properties=properties or{}
@@ -8768,23 +8768,23 @@ structures.Shadows=structures.Body:FindFirstChild"ShadowLayers"
 structures.Shadow1=structures.Shadows:FindFirstChild"Layer1":FindFirstChild"UIStroke"
 structures.Shadow2=structures.Shadows:FindFirstChild"Layer2":FindFirstChild"UIStroke"
 
-local labelContext,
+local labelContext={
+TextColor3=function()
+local state=properties.State
 
+return state=="Primary"and self.Theme.Text.SelectionPrimary[1].Value
+or state=="Secondary"and self.Theme.Text.Primary[1].Value
+or state=="Destructive"and self.Theme.Accents.Red[1].Value
+end,
+TextTransparency=function()
+local state=properties.State
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-fillContext={TextColor3=function()local state=properties.State return state=="Primary"and self.Theme.Text.SelectionPrimary[1].Value or state=="Secondary"and self.Theme.Text.Primary[1].Value or state=="Destructive"and self.Theme.Accents.Red[1].Value end,TextTransparency=function()local state=properties.State return state=="Primary"and self.Theme.Text.SelectionPrimary[2].Value or state=="Secondary"and self.Theme.Text.Primary[2].Value or state=="Destructive"and self.Theme.Accents.Red[2].Value end,},{
+return state=="Primary"and self.Theme.Text.SelectionPrimary[2].Value
+or state=="Secondary"and self.Theme.Text.Primary[2].Value
+or state=="Destructive"and self.Theme.Accents.Red[2].Value
+end,
+}
+local fillContext={
 Color=function()
 local state=properties.State
 
@@ -8834,8 +8834,8 @@ Color=theme.FillPrimary,
 __contextKeys=fillContext,
 })
 
-local
-bindings,object={
+local object
+local bindings={
 State=function()
 task.defer(function()
 structures.Label.TextColor3=labelContext.TextColor3()
@@ -8917,45 +8917,45 @@ end end function __DIST.G()__DIST.load'b'
 
 return function(self,properties)
 
-local creator,
-binder,
+local creator=__DIST.load'd'
+local binder=__DIST.load'c'
 
-textField=__DIST.load'd',__DIST.load'c',__DIST.load'm'
-
-
-local create,
+local textField=__DIST.load'm'
 
 
-parent,
-theme,
-structures,
+local create=creator.Create
 
-holding,
-stepConnections,
-repeatDelay,
-repeatInterval,getPrecision=creator.Create,self.__container or self.__instance or self,self.Theme.Controls.Stepper,{},false,{},0.35,0.083,function(
+
+local parent=self.__container or self.__instance or self
+local theme=self.Theme.Controls.Stepper
+local structures={}
+
+local holding=false
+local stepConnections={}
+local repeatDelay=0.35
+local repeatInterval=0.083 local getPrecision=function(
 
 
 step)
 local stepStr=tostring(step)
-local dot,
-precision=string.find(stepStr,"%."),0
+local dot=string.find(stepStr,"%.")
+local precision=0
 
 if dot then
 precision=#stepStr-dot
 end
 
-return precision end local stepFormat, round=function(
+return precision end local stepFormat=function(
 
 
 value, step)
-local stepPrecision,
-valuePrecision=getPrecision(step),getPrecision(value)
+local stepPrecision=getPrecision(step)
+local valuePrecision=getPrecision(value)
 
 local displayPrecision=math.max(stepPrecision,valuePrecision)
 
 local formatStr="%."..displayPrecision.."f"
-return string.format(formatStr,value)end, function(
+return string.format(formatStr,value)end local round=function(
 
 
 value, decimals)
@@ -9219,8 +9219,8 @@ object.Increment=function()
 assert(properties.Minimum)
 assert(properties.Maximum)
 
-local precision,
-rawValue=math.max(getPrecision(object.Value),getPrecision(properties.Step)),object.Value+properties.Step
+local precision=math.max(getPrecision(object.Value),getPrecision(properties.Step))
+local rawValue=object.Value+properties.Step
 local newValue=round(rawValue,precision)
 
 object.Value=math.clamp(newValue,properties.Minimum,properties.Maximum)
@@ -9230,12 +9230,12 @@ object.Decrement=function()
 assert(properties.Minimum)
 assert(properties.Maximum)
 
-local precision,
-rawValue=math.max(getPrecision(object.Value),getPrecision(properties.Step)),object.Value-properties.Step
+local precision=math.max(getPrecision(object.Value),getPrecision(properties.Step))
+local rawValue=object.Value-properties.Step
 local newValue=round(rawValue,precision)
 
 object.Value=math.clamp(newValue,properties.Minimum,properties.Maximum)
-end local stepStart, stepStop=function(
+end local stepStart=function(
 
 direction)
 holding=true
@@ -9257,7 +9257,7 @@ if holding then
 action()
 end
 end
-end)end, function(
+end)end local stepStop=function(
 
 
 direction)
@@ -9338,16 +9338,16 @@ end end function __DIST.H()__DIST.load'b'
 
 return function(self,properties)
 
-local creator,
-binder=__DIST.load'd',__DIST.load'c'
+local creator=__DIST.load'd'
+local binder=__DIST.load'c'
 
 
-local create,
+local create=creator.Create
 
 
-parent,
-theme,
-structures=creator.Create,self.__container or self.__instance or self,self.Theme.Controls.RadioButtonGroup,{
+local parent=self.__container or self.__instance or self
+local theme=self.Theme.Controls.RadioButtonGroup
+local structures={
 RadioButtons={},
 }local radioButton=function(
 
@@ -9640,33 +9640,33 @@ end end function __DIST.I()__DIST.load'b'
 
 return function(self,properties)
 
-local creator,
-binder,
-services=__DIST.load'd',__DIST.load'c',__DIST.load'e'
+local creator=__DIST.load'd'
+local binder=__DIST.load'c'
+local services=__DIST.load'e'
 
 
-local create,
+local create=creator.Create
 
-userInputService,
-tweenService,
-workspace,
-guiService=creator.Create,services.UserInputService,services.TweenService,services.Workspace,services.GuiService
+local userInputService=services.UserInputService
+local tweenService=services.TweenService
+local workspace=services.Workspace
+local guiService=services.GuiService
 
-local camera,
-
-
-parent,
-theme,
-structures,
+local camera=workspace.CurrentCamera
 
 
+local parent=self.__container or self.__instance or self
+local theme=self.Theme.Controls.MenuButton
+local structures={
+Options={},
+}
 
 
-HORIZONTAL_OFFSET,
-VERTICAL_PADDING,
-EDGE_BUFFER,
+local HORIZONTAL_OFFSET=-1
+local VERTICAL_PADDING=6
+local EDGE_BUFFER=6
 
-SIZE_CONSTRAINT_Y=workspace.CurrentCamera,self.__container or self.__instance or self,self.Theme.Controls.MenuButton,{Options={},},-1,6,6,239 local resize, anchor=function()
+local SIZE_CONSTRAINT_Y=239 local resize=function()
 
 
 
@@ -9682,26 +9682,26 @@ else
 structures.Menu.Size=UDim2.fromOffset(0,menuHeight)
 structures.Menu.AutomaticSize=Enum.AutomaticSize.X
 end
-end)end, function()
+end)end local anchor=function()
 
 
 
-local body,
-menu=structures.Body,structures.Menu
+local body=structures.Body
+local menu=structures.Menu
 
 if not menu or not body then
 return
 end
 
-local bodyPos,
-bodySize,
-menuSize,
-viewportSize=body.AbsolutePosition,body.AbsoluteSize,menu.AbsoluteSize,camera.ViewportSize
+local bodyPos=body.AbsolutePosition
+local bodySize=body.AbsoluteSize
+local menuSize=menu.AbsoluteSize
+local viewportSize=camera.ViewportSize
 
-local desiredX,
-desiredY,
-maxX,
-maxY=bodyPos.X+HORIZONTAL_OFFSET,bodyPos.Y+bodySize.Y+VERTICAL_PADDING,math.max(EDGE_BUFFER,viewportSize.X-EDGE_BUFFER-menuSize.X),math.max(EDGE_BUFFER,viewportSize.Y-EDGE_BUFFER-menuSize.Y)
+local desiredX=bodyPos.X+HORIZONTAL_OFFSET
+local desiredY=bodyPos.Y+bodySize.Y+VERTICAL_PADDING
+local maxX=math.max(EDGE_BUFFER,viewportSize.X-EDGE_BUFFER-menuSize.X)
+local maxY=math.max(EDGE_BUFFER,viewportSize.Y-EDGE_BUFFER-menuSize.Y)
 
 desiredX=math.clamp(desiredX,EDGE_BUFFER,maxX)
 desiredY=math.clamp(desiredY,EDGE_BUFFER,maxY)
@@ -9795,8 +9795,8 @@ Name="UICorner",
 CornerRadius=UDim.new(0,5),
 },
 })
-local label,
-checkmark=option:FindFirstChild"Label",option:FindFirstChild"Checkmark"
+local label=option:FindFirstChild"Label"
+local checkmark=option:FindFirstChild"Checkmark"
 
 structures.Options[index]=option.__instance
 
@@ -10010,8 +10010,8 @@ end
 
 anchor()
 
-local goal,
-tweenInfo={GroupTransparency=expand and 0 or 1},TweenInfo.new(expand and 0 or 0.4,Enum.EasingStyle.Exponential)
+local goal={GroupTransparency=expand and 0 or 1}
+local tweenInfo=TweenInfo.new(expand and 0 or 0.4,Enum.EasingStyle.Exponential)
 local tween=tweenService:Create(structures.MenuBody,tweenInfo,goal)
 
 tween:Play()
@@ -10088,13 +10088,13 @@ input.UserInputType==Enum.UserInputType.MouseButton1
 or input.UserInputType==Enum.UserInputType.Touch
 )
 then
-local mouse,
-inset,
-menuFrame=userInputService:GetMouseLocation(),guiService:GetGuiInset(),structures.Menu
-local pos,
-size,
+local mouse=userInputService:GetMouseLocation()
+local inset=guiService:GetGuiInset()
+local menuFrame=structures.Menu
+local pos=menuFrame.AbsolutePosition
+local size=menuFrame.AbsoluteSize
 
-adjustedMouseY=menuFrame.AbsolutePosition,menuFrame.AbsoluteSize,mouse.Y-inset.Y
+local adjustedMouseY=mouse.Y-inset.Y
 
 if
 mouse.X<pos.X
@@ -10118,51 +10118,51 @@ end end function __DIST.J()__DIST.load'b'
 
 return function(self,properties)
 
-local creator,
-binder,
-services=__DIST.load'd',__DIST.load'c',__DIST.load'e'
+local creator=__DIST.load'd'
+local binder=__DIST.load'c'
+local services=__DIST.load'e'
 
 
-local create,
+local create=creator.Create
 
-userInputService,
-tweenService,
-workspace,
-guiService=creator.Create,services.UserInputService,services.TweenService,services.Workspace,services.GuiService
+local userInputService=services.UserInputService
+local tweenService=services.TweenService
+local workspace=services.Workspace
+local guiService=services.GuiService
 
-local camera,
-
-
-parent,
-theme,
-structures,
+local camera=workspace.CurrentCamera
 
 
+local parent=self.__container or self.__instance or self
+local theme=self.Theme.Controls.MenuButton
+local structures={
+Options={},
+}
 
 
-HORIZONTAL_OFFSET,
-VERTICAL_PADDING,
-EDGE_BUFFER=workspace.CurrentCamera,self.__container or self.__instance or self,self.Theme.Controls.MenuButton,{Options={},},-1,6,6 local anchor=function()
+local HORIZONTAL_OFFSET=-1
+local VERTICAL_PADDING=6
+local EDGE_BUFFER=6 local anchor=function()
 
 
 
-local body,
-menu=structures.Body,structures.Menu
+local body=structures.Body
+local menu=structures.Menu
 
 if not menu or not body then
 return
 end
 
-local bodyPos,
-bodySize,
-menuSize,
-viewportSize=body.AbsolutePosition,body.AbsoluteSize,menu.AbsoluteSize,camera.ViewportSize
+local bodyPos=body.AbsolutePosition
+local bodySize=body.AbsoluteSize
+local menuSize=menu.AbsoluteSize
+local viewportSize=camera.ViewportSize
 
-local desiredX,
-desiredY,
+local desiredX=bodyPos.X+HORIZONTAL_OFFSET
+local desiredY=bodyPos.Y+(bodySize.Y*3)+(VERTICAL_PADDING*3)
 
-maxX,
-maxY=bodyPos.X+HORIZONTAL_OFFSET,bodyPos.Y+(bodySize.Y*3)+(VERTICAL_PADDING*3),math.max(EDGE_BUFFER,viewportSize.X-EDGE_BUFFER-menuSize.X),math.max(EDGE_BUFFER,viewportSize.Y-EDGE_BUFFER-menuSize.Y)
+local maxX=math.max(EDGE_BUFFER,viewportSize.X-EDGE_BUFFER-menuSize.X)
+local maxY=math.max(EDGE_BUFFER,viewportSize.Y-EDGE_BUFFER-menuSize.Y)
 
 desiredX=math.clamp(desiredX,EDGE_BUFFER,maxX)
 desiredY=math.clamp(desiredY,EDGE_BUFFER,maxY)
@@ -10434,8 +10434,8 @@ end
 
 anchor()
 
-local goal,
-tweenInfo={GroupTransparency=expand and 0 or 1},TweenInfo.new(expand and 0 or 0.4,Enum.EasingStyle.Exponential)
+local goal={GroupTransparency=expand and 0 or 1}
+local tweenInfo=TweenInfo.new(expand and 0 or 0.4,Enum.EasingStyle.Exponential)
 local tween=tweenService:Create(structures.MenuBody,tweenInfo,goal)
 
 tween:Play()
@@ -10496,13 +10496,13 @@ input.UserInputType==Enum.UserInputType.MouseButton1
 or input.UserInputType==Enum.UserInputType.Touch
 )
 then
-local mouse,
-inset,
-menuFrame=userInputService:GetMouseLocation(),guiService:GetGuiInset(),structures.Menu
-local pos,
-size,
+local mouse=userInputService:GetMouseLocation()
+local inset=guiService:GetGuiInset()
+local menuFrame=structures.Menu
+local pos=menuFrame.AbsolutePosition
+local size=menuFrame.AbsoluteSize
 
-adjustedMouseY=menuFrame.AbsolutePosition,menuFrame.AbsoluteSize,mouse.Y-inset.Y
+local adjustedMouseY=mouse.Y-inset.Y
 
 if
 mouse.X<pos.X
@@ -10520,60 +10520,60 @@ object.Expanded=not object.Expanded
 end)
 
 return object
-end end function __DIST.K()local
-
-types=(__DIST.load'b')
+end end function __DIST.K()__DIST.load'b'
 
 
 
+
+local activeDropdown
 
 return function(self,properties)
 
-local creator,
-binder,
-services=__DIST.load'd',__DIST.load'c',__DIST.load'e'
+local creator=__DIST.load'd'
+local binder=__DIST.load'c'
+local services=__DIST.load'e'
 
 
-local create,
+local create=creator.Create
 
-userInputService,
-tweenService,
-workspace,
-guiService=creator.Create,services.UserInputService,services.TweenService,services.Workspace,services.GuiService
+local userInputService=services.UserInputService
+local tweenService=services.TweenService
+local workspace=services.Workspace
+local guiService=services.GuiService
 
-local camera,
+local camera=workspace.CurrentCamera
 
 
 
-props=workspace.CurrentCamera,table.clone(properties or{})
+local props=table.clone(properties or{})
 if typeof(props.Options)=="table"then
 props.Options=table.clone(props.Options)
-end local
+end
 
-parent, 
-theme, 
-structures, 
-
-
-
-
-
-
-
-
-
+local parent=self.__container or self.__instance or self
+local theme=self.Theme.Controls.MenuButton
+local structures={
+Options={},
+Body=nil,
+Menu=nil,
+MenuBody=nil,
+MenuContainer=nil,
+PullDownIndicator=nil,
+}
 
 
-dropdownId, 
+local object
+
+local dropdownId=tostring(math.random(100000,999999)).."_"..tostring(tick())
+
+
+local selectedKey
+local selectedSet={}
 
 
 
-selectedSet, 
-
-
-
-VERTICAL_PADDING, 
-EDGE_BUFFER=self.__container or self.__instance or self, self.Theme.Controls.MenuButton, {Options={},Body=nil,Menu=nil,MenuBody=nil,MenuContainer=nil,PullDownIndicator=nil,}, tostring(math.random(100000,999999)).."_"..tostring(tick()), {}, 6, 6 local resizeMenuHeightToContent, computeDesiredMenuY=function()
+local VERTICAL_PADDING=6
+local EDGE_BUFFER=6 local resizeMenuHeightToContent=function()
 
 
 
@@ -10582,46 +10582,46 @@ if not menu then
 return
 end
 
-local maxHeight,
-contentHeight=tonumber(props.MaxMenuHeight)or 240,math.floor(menu.AbsoluteCanvasSize.Y)
+local maxHeight=tonumber(props.MaxMenuHeight)or 240
+local contentHeight=math.floor(menu.AbsoluteCanvasSize.Y)
 local targetHeight=math.clamp(contentHeight,0,maxHeight)
 
 menu.AutomaticSize=Enum.AutomaticSize.X
-menu.Size=UDim2.new(menu.Size.X.Scale,menu.Size.X.Offset,0,targetHeight)end, function(
+menu.Size=UDim2.new(menu.Size.X.Scale,menu.Size.X.Offset,0,targetHeight)end local computeDesiredMenuY=function(
 
 body, menu)
-local bodyPos,
-bodySize,
-menuSize,
-viewportSize=body.AbsolutePosition,body.AbsoluteSize,menu.AbsoluteSize,camera.ViewportSize
+local bodyPos=body.AbsolutePosition
+local bodySize=body.AbsoluteSize
+local menuSize=menu.AbsoluteSize
+local viewportSize=camera.ViewportSize
 
-local desiredX,
-desiredY,
+local desiredX=bodyPos.X+math.floor((bodySize.X-menuSize.X)/2)
+local desiredY=bodyPos.Y+(bodySize.Y*3)+(VERTICAL_PADDING*3)
 
-maxX,
-maxY=bodyPos.X+math.floor((bodySize.X-menuSize.X)/2),bodyPos.Y+(bodySize.Y*3)+(VERTICAL_PADDING*3),math.max(EDGE_BUFFER,viewportSize.X-EDGE_BUFFER-menuSize.X),math.max(EDGE_BUFFER,viewportSize.Y-EDGE_BUFFER-menuSize.Y)
+local maxX=math.max(EDGE_BUFFER,viewportSize.X-EDGE_BUFFER-menuSize.X)
+local maxY=math.max(EDGE_BUFFER,viewportSize.Y-EDGE_BUFFER-menuSize.Y)
 
 desiredX=math.clamp(desiredX,EDGE_BUFFER,maxX)
 desiredY=math.clamp(desiredY,EDGE_BUFFER,maxY)
 
-return desiredX,desiredY,viewportSize end local anchor, getOptionLabelText, applySelectionFromValue, emitValueChanged=function()
+return desiredX,desiredY,viewportSize end local anchor=function()
 
 
 
-local body,
-menu=structures.Body,structures.Menu
+local body=structures.Body
+local menu=structures.Menu
 
 if not menu or not body then
 return
 end
 
 local desiredX,desiredY=computeDesiredMenuY(body,menu)
-menu.Position=UDim2.new(0,desiredX,0,desiredY)end, function(
+menu.Position=UDim2.new(0,desiredX,0,desiredY)end local getOptionLabelText=function(
 
 
 name, _isSelected)
 
-return name end, function(
+return name end local applySelectionFromValue=function(
 
 
 value)
@@ -10639,7 +10639,7 @@ else
 if typeof(value)=="string"then
 selectedKey=value
 end
-end end, function()
+end end local emitValueChanged=function()
 
 
 
@@ -10652,22 +10652,22 @@ out=selectedKey or""
 end
 props.Value=out
 task.spawn(props.ValueChanged,object,out)
-end end local refreshAllOptionLabels, 
+end end local refreshAllOptionLabels=function()
 
 
 
+for index,optionButton in ipairs(structures.Options)do
+local label=optionButton:FindFirstChild"Label"
+if label then
+local name=props.Options and props.Options[index]or tostring(index)
+local isSelected=if props.Multiple==true then selectedSet[name]==true else selectedKey==name
+label.Text=getOptionLabelText(name,isSelected)
+end
+end end
 
 
 
-
-
-
-
-
-
-
-
-updateOptionHighlight=function()for index,optionButton in ipairs(structures.Options)do local label=optionButton:FindFirstChild"Label"if label then local name=props.Options and props.Options[index]or tostring(index)local isSelected=if props.Multiple==true then selectedSet[name]==true else selectedKey==name label.Text=getOptionLabelText(name,isSelected)end end end local refreshAllOptionHighlights=function()
+local updateOptionHighlight local refreshAllOptionHighlights=function()
 
 
 for index in ipairs(structures.Options)do
@@ -10682,8 +10682,8 @@ return
 end
 
 local name=props.Options and props.Options[index]or tostring(index)
-local isSelected,
-label=if props.Multiple==true then selectedSet[name]==true else selectedKey==name,optionButton:FindFirstChild"Label"
+local isSelected=if props.Multiple==true then selectedSet[name]==true else selectedKey==name
+local label=optionButton:FindFirstChild"Label"
 
 if isSelected then
 optionButton.BackgroundTransparency=self.Theme.Controls.SelectionFocused[2].Value
@@ -11028,13 +11028,13 @@ input.UserInputType==Enum.UserInputType.MouseButton1
 or input.UserInputType==Enum.UserInputType.Touch
 )
 then
-local mouse,
-inset,
-menuFrame=userInputService:GetMouseLocation(),guiService:GetGuiInset(),structures.Menu
-local pos,
-size,
+local mouse=userInputService:GetMouseLocation()
+local inset=guiService:GetGuiInset()
+local menuFrame=structures.Menu
+local pos=menuFrame.AbsolutePosition
+local size=menuFrame.AbsoluteSize
 
-adjustedMouseY=menuFrame.AbsolutePosition,menuFrame.AbsoluteSize,mouse.Y-inset.Y
+local adjustedMouseY=mouse.Y-inset.Y
 
 if
 mouse.X<pos.X
@@ -11060,8 +11060,8 @@ end
 anchor()
 resizeMenuHeightToContent()
 
-local goal,
-tweenInfo={GroupTransparency=expand and 0 or 1},TweenInfo.new(expand and 0 or 0.4,Enum.EasingStyle.Exponential)
+local goal={GroupTransparency=expand and 0 or 1}
+local tweenInfo=TweenInfo.new(expand and 0 or 0.4,Enum.EasingStyle.Exponential)
 local tween=tweenService:Create(structures.MenuBody,tweenInfo,goal)
 
 tween:Play()
@@ -11176,10 +11176,10 @@ return object
 end end function __DIST.L()
 
 
-local binder,
+local binder=__DIST.load'c'
 
 
-components=__DIST.load'c',{
+local components={
 Window=__DIST.load'p',
 Section=__DIST.load'q',
 Tab=__DIST.load'r',
@@ -11216,34 +11216,34 @@ end
 end)(make)
 end
 
-return components end end local
+return components end end
 
 
-utility, 
-types, 
-creator, 
-binder, 
-services, 
-responsive, 
+local utility=__DIST.load'a'__DIST.load'b'
 
-symbols, 
-themes, 
-components=__DIST.load'a', __DIST.load'b', __DIST.load'd', __DIST.load'c', __DIST.load'e', __DIST.load'f', __DIST.load'g', __DIST.load'j', __DIST.load'L'
+local creator=__DIST.load'd'
+local binder=__DIST.load'c'
+local services=__DIST.load'e'
+local responsive=__DIST.load'f'
 
-
-local create,
-
-tweenService,
+local symbols=__DIST.load'g'
+local themes=__DIST.load'j'
+local components=__DIST.load'L'
 
 
-cascade,
+local create=creator.Create
+
+local tweenService=services.TweenService
 
 
+local cascade={
+Themes=themes,
+Symbols=symbols,
+Responsive=responsive,
+}
 
-
-
-tweenInfo,
-currentTween=creator.Create,services.TweenService,{Themes=themes,Symbols=symbols,Responsive=responsive,},(TweenInfo.new(0.4,Enum.EasingStyle.Exponential,Enum.EasingDirection.Out))
+local tweenInfo=TweenInfo.new(0.4,Enum.EasingStyle.Exponential,Enum.EasingDirection.Out)
+local currentTween
 
 
 local function deepCopy(original)
@@ -11288,28 +11288,28 @@ ClipToDeviceSafeArea=shouldRespectSafeArea,
 OnTopOfCoreBlur=true,
 }))
 
-local pill,
+local pill=(create"ImageButton"{
+Name="WindowPill",
+AnchorPoint=Vector2.new(0.5,0),
+AutoButtonColor=false,
+BackgroundColor3=Color3.fromRGB(255,255,255),
+BackgroundTransparency=1,
+BorderColor3=Color3.fromRGB(0,0,0),
+BorderSizePixel=0,
+Image="rbxassetid://93520763686656",
+ImageTransparency=0.5,
+Position=UDim2.new(0.5,0,0,10),
+Size=UDim2.fromOffset(180,5),
+Parent=container.__instance,
+
+create"UICorner"{
+Name="UICorner",
+CornerRadius=UDim.new(1,0),
+},
+})
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-mobileButton=(create"ImageButton"{Name="WindowPill",AnchorPoint=Vector2.new(0.5,0),AutoButtonColor=false,BackgroundColor3=Color3.fromRGB(255,255,255),BackgroundTransparency=1,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Image="rbxassetid://93520763686656",ImageTransparency=0.5,Position=UDim2.new(0.5,0,0,10),Size=UDim2.fromOffset(180,5),Parent=container.__instance,create"UICorner"{Name="UICorner",CornerRadius=UDim.new(1,0),},}),(create"ImageButton"{
+local mobileButton=(create"ImageButton"{
 Name="WindowButton",
 AnchorPoint=Vector2.new(0,0),
 AutoButtonColor=false,
@@ -11376,8 +11376,8 @@ end
 end)
 
 
-local mobileButtonTween,
-logoTween
+local mobileButtonTween
+local logoTween
 
 mobileButton.MouseEnter:Connect(function()
 if mobileButtonTween then
