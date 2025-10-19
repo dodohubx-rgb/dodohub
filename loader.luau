@@ -2,20 +2,17 @@
 --!nolint
 
 --[[
-    @authors YOUR_NAME
-    @repository YOUR_REPOSITORY
+    @authors DODOHUB
 
     This file was automatically generated with darklua, it is not intended for manual editing.
 --]]
 
-_P = {
-    genDate = "2025-10-14T18:30:11.005402900+00:00",
-    cfg = "Release",
-    vers = "v0.0.0"
+__BUILD = {
+    DATE = "2025-10-19 16:28:10",
+    VERSION = "v0.0.0",
+    CONFIG = "Release",
 }
-
-local a a={cache={},load=function(b)if not a.cache[b]then a.cache[b]={c=a[b]()}
-end return a.cache[b].c end}do function a.a()local b,c,d,e,f,g,h,i,j=game:
+local a={cache={}}do do local b=function()local b,c,d,e,f,g,h,i,j=game:
 GetService'Players',game:GetService'TweenService',game:GetService
 'UserInputService',game:GetService'RunService',{},{ASSET_ID='94126317688222',
 FOOTER_TEXT='DODOHUB | .gg/Esq624R7FB',GET_KEY_CALLBACK=function()end,
@@ -193,15 +190,16 @@ h.textInput then h.textInput.Text=k end end function f.getKeyText()return h.
 textInput and h.textInput.Text or''end function f.show()if i then return end i=
 true if h.screenGui then h.screenGui.Enabled=true end end function f.hide()if
 not i then return end i=false if h.screenGui then h.screenGui.Enabled=false end
-end return f end end local b,c,d,e=loadstring(game:HttpGet
-'https://sdkapi-public.luarmor.net/library.lua')(),a.load'a',function()if
-typeof(script_key)=='string'and script_key~=''then return script_key end return
-nil end,function()return premium==true end local f=function()local f,g=function(
-f)return typeof(f)=='function'end,'dodohub'local h,i,j,k,l=g..'/key.txt',
+end return f end function a.a()local c=a.cache.a if not c then c={c=b()}a.cache.
+a=c end return c.c end end end local b,c,d,e=loadstring(game:HttpGet
+'https://sdkapi-public.luarmor.net/library.lua')(),a.a(),function()if typeof(
+script_key)=='string'and script_key~=''then return script_key end return nil end
+,function()return premium==true end local f=function()local f,g=function(f)
+return typeof(f)=='function'end,'dodohub'local h,i,j,k,l=g..'/key.txt',
 'dodohub/key.txt',function()if f(isfolder)then local h,i=pcall(isfolder,g)if h
 and i then return end end if f(makefolder)then pcall(makefolder,g)end end,
 function(h)if f(isfile)then local i,j=pcall(isfile,h)if i then return j==true
-end end if f(readfile)then local i,j=pcall(readfile,h)return i==true end return
+end end if f(readfile)then local i=pcall(readfile,h)return i==true end return
 false end,function(h)if not f(readfile)then return nil end local i,j=pcall(
 readfile,h)if i and typeof(j)=='string'and j~=''then return j end return nil end
 local m,n,o,p,q=function()if k(h)then local m=l(h)if m then return m end end if
