@@ -8,7 +8,7 @@
 --]]
 
 __BUILD = {
-    DATE = "2025-10-21 02:30:17",
+    DATE = "2025-10-23 23:10:30",
     VERSION = "v0.0.0",
     CONFIG = "Release",
 }
@@ -198,42 +198,50 @@ not g then return end g=false if f.screenGui then f.screenGui.Enabled=false end
 end return e end function a.b()local c=a.cache.b if not c then c={c=b()}a.cache.
 b=c end return c.c end end end local b=a.a()if b.scriptLoaded then return end b.
 setLoaderLoaded()local c,d,e,f,g,h,i=loadstring(game:HttpGet
-'https://sdkapi-public.luarmor.net/library.lua')(),a.b(),{KEY_DIR='dodohub',
-KEY_FILE='dodohub/key.txt',KEY_FILE_ALT='dodohub/key.txt',ASSET_ID=
-'94126317688222',FOOTER_TEXT='DODOHUB | .gg/Esq624R7FB',GET_KEY_URL=
-[[https://ads.luarmor.net/get_key?for=dodohub__ads-oeruTshXacdj]],LOADER_URL=
+'https://sdkapi-public.luarmor.net/library.lua')(),a.b(),{KEY_DIRECTORY=
+'dodohub',KEY_FILE_PATH='dodohub/key.txt',KEY_FILE_ALTERNATE='dodohub/key.txt',
+LOGO_ASSET_ID='94126317688222',FOOTER_TEXT='DODOHUB | .gg/Esq624R7FB',
+GET_KEY_URL=[[https://ads.luarmor.net/get_key?for=dodohub__ads-oeruTshXacdj]],
+LOADER_URL=
 [[https://raw.githubusercontent.com/dodohubx-rgb/dodohub/refs/heads/main/loader.luau]]
-,LOADER_MAX_WAIT=60},{ads={[105555311806207]='a05bf6f6f0615db868a8d25c1f1c67b2',
-[122826953758426]='d237e7bf18b1113b1a22733af557c3a2'},premium={[105555311806207]
-='7588dbfaad66bed7ea5e339650f903cd',[122826953758426]=
+,LOADER_MAX_WAIT_TIME=60},{ads={[105555311806207]=
+'a05bf6f6f0615db868a8d25c1f1c67b2',[122826953758426]=
+'d237e7bf18b1113b1a22733af557c3a2'},premium={[105555311806207]=
+'7588dbfaad66bed7ea5e339650f903cd',[122826953758426]=
 'c46d1914040bfb845c98147bdad3a013'}},function(c)return typeof(c)=='function'end,
 function()if typeof(script_key)=='string'and script_key~=''then return
 script_key end return nil end,function()return premium==true end local j,k,l,m=
 function(j,k)local l=k and f.premium or f.ads return l[j]end,function()if g(
-isfolder)then local j,k=pcall(isfolder,e.KEY_DIR)if j and k then return true end
-end if g(makefolder)then return pcall(makefolder,e.KEY_DIR)end return false end,
-function(j)if g(isfile)then local k,l=pcall(isfile,j)return k and l end if g(
-readfile)then local k=pcall(readfile,j)return k end return false end,function(j)
-if not g(readfile)then return nil end local k,l=pcall(readfile,j)if k and
-typeof(l)=='string'and l~=''then return l end return nil end local n,o=function(
-n,o)if not k()then return false end if g(writefile)then return pcall(writefile,n
-,o)end if g(delfile)then pcall(delfile,n)end if g(appendfile)then return pcall(
-appendfile,n,o)end return false end,function()if l(e.KEY_FILE)then local n=m(e.
-KEY_FILE)if n then return n end end if l(e.KEY_FILE_ALT)then return m(e.
-KEY_FILE_ALT)end return nil end local p,q=function(p)return n(e.KEY_FILE,p)end,
-function(p,q)c.script_id=q return c.check_key(p)end local r,s,t=function()local
-r=h()or o()if not r then return false end local s=j(game.PlaceId,i())if not s
-then return false end local t=q(r,s)if t and t.code=='KEY_VALID'then getgenv().
-script_key=r c.load_script()return true end return false end,function()local r,s
-=pcall(getgenv)if r and typeof(s)=='table'and typeof(s.setclipboard)=='function'
-then pcall(s.setclipboard,e.GET_KEY_URL)end end,function(r)d.setState
-'validating'local s=j(game.PlaceId,i())if not s then d.setState('error',
-'Unsupported game')return end local t=q(r,s)if not t then d.setState('error',
-'Validation failed')return end if t.code=='KEY_VALID'then d.destroy()getgenv().
-script_key=r p(r)c.load_script()task.spawn(function()while not b.scriptLoaded do
-task.wait(60)if b.scriptLoaded then return end c.load_script()end end)return end
-if t.code=='KEY_INVALID'then d.setState('error','Invalid key')return end d.
-setState('error',t.message or'Unknown error')end local u=function()if r()then
-return end local u=h()or o()d.init{ASSET_ID=e.ASSET_ID,FOOTER_TEXT=e.FOOTER_TEXT
-,GET_KEY_CALLBACK=s,KEY_SUBMIT_CALLBACK=t}if u then d.setKeyText(u)end end
-repeat wait(1)until game:IsLoaded()and game:GetService'Players'.LocalPlayer u()
+isfolder)then local j,k=pcall(isfolder,e.KEY_DIRECTORY)if j and k then return
+true end end if g(makefolder)then return pcall(makefolder,e.KEY_DIRECTORY)end
+return false end,function(j)if g(isfile)then local k,l=pcall(isfile,j)return k
+and l end if g(readfile)then local k=pcall(readfile,j)return k end return false
+end,function(j)if not g(readfile)then return nil end local k,l=pcall(readfile,j)
+if k and typeof(l)=='string'and l~=''then return l end return nil end local n,o=
+function(n,o)if not k()then return false end if g(writefile)then return pcall(
+writefile,n,o)end if g(delfile)then pcall(delfile,n)end if g(appendfile)then
+return pcall(appendfile,n,o)end return false end,function()if l(e.KEY_FILE_PATH)
+then local n=m(e.KEY_FILE_PATH)if n then return n end end if l(e.
+KEY_FILE_ALTERNATE)then return m(e.KEY_FILE_ALTERNATE)end return nil end local p
+,q=function(p)return n(e.KEY_FILE_PATH,p)end,function(p,q)c.script_id=q return c
+.check_key(p)end local r,s,t,u=function()local r=h()or o()if not r then return
+false end local s=j(game.PlaceId,i())if not s then return false end local t=q(r,
+s)if t and t.code=='KEY_VALID'then getgenv().script_key=r c.load_script()return
+true end return false end,function()local r,s=pcall(getgenv)if r and typeof(s)==
+'table'and typeof(s.setclipboard)=='function'then pcall(s.setclipboard,e.
+GET_KEY_URL)end end,function(r)d.setState'validating'local s=j(game.PlaceId,i())
+if not s then d.setState('error','Unsupported game')return end local t=q(r,s)if
+not t then d.setState('error','Validation failed')return end if t.code==
+'KEY_VALID'then d.destroy()getgenv().script_key=r p(r)c.load_script()if i()then
+startPremiumRetryLoop()else task.spawn(function()while not b.scriptLoaded do
+task.wait(60)if b.scriptLoaded then return end c.load_script()end end)end return
+end if t.code=='KEY_INVALID'then d.setState('error','Invalid key')return end d.
+setState('error',t.message or'Unknown error')end,function()task.spawn(function()
+while not b.scriptLoaded do task.wait(60)if b.scriptLoaded then return end local
+r=j(game.PlaceId,true)if r then c.script_id=r c.load_script()end end end)end
+local v=function()local v=h()or o()if i()then if v then getgenv().script_key=v
+end local w=j(game.PlaceId,true)if w then c.script_id=w c.load_script()end u()
+return end if r()then return end d.init{ASSET_ID=e.LOGO_ASSET_ID,FOOTER_TEXT=e.
+FOOTER_TEXT,GET_KEY_CALLBACK=s,KEY_SUBMIT_CALLBACK=t}if v then d.setKeyText(v)
+end end repeat wait(1)until game:IsLoaded()and game:GetService'Players'.
+LocalPlayer v()
