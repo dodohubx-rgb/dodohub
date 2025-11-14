@@ -8,7 +8,7 @@
 --]]
 
 __BUILD = {
-    DATE = "2025-11-14 23:21:59",
+    DATE = "2025-11-15 00:03:11",
     VERSION = "v0.0.0",
     CONFIG = "Release",
 }
@@ -232,16 +232,20 @@ true end return false end,function()local r,s=pcall(getgenv)if r and typeof(s)==
 GET_KEY_URL)end end,function(r)d.setState'validating'local s=j(game.PlaceId,i())
 if not s then d.setState('error','Unsupported game')return end local t=q(r,s)if
 not t then d.setState('error','Validation failed')return end if t.code==
-'KEY_VALID'then d.destroy()getgenv().script_key=r p(r)c.load_script()if i()then
-startPremiumRetryLoop()else task.spawn(function()while not b.scriptLoaded do
-task.wait(60)if b.scriptLoaded then return end c.load_script()end end)end return
-end if t.code=='KEY_INVALID'then d.setState('error','Invalid key')return end d.
-setState('error',t.message or'Unknown error')end,function()task.spawn(function()
-while not b.scriptLoaded do task.wait(60)if b.scriptLoaded then return end local
-r=j(game.PlaceId,true)if r then c.script_id=r c.load_script()end end end)end
-local v=function()local v=h()or o()if i()then if v then getgenv().script_key=v
-end local w=j(game.PlaceId,true)if w then c.script_id=w c.load_script()end u()
-return end if r()then return end d.init{ASSET_ID=e.LOGO_ASSET_ID,FOOTER_TEXT=e.
-FOOTER_TEXT,GET_KEY_CALLBACK=s,KEY_SUBMIT_CALLBACK=t}if v then d.setKeyText(v)
-end end repeat wait(1)until game:IsLoaded()and game:GetService'Players'.
-LocalPlayer v()
+'KEY_VALID'then d.destroy()getgenv().script_key=r p(r)print
+'loader: loading script'c.load_script()if i()then startPremiumRetryLoop()else
+task.spawn(function()while not b.scriptLoaded do print
+'loader: waiting for script to load'task.wait(e.LOADER_MAX_WAIT_TIME)if b.
+scriptLoaded then print'loader: script loaded'return end print
+'loader: retrying script load'c.load_script()end end)end return end if t.code==
+'KEY_INVALID'then d.setState('error','Invalid key')return end d.setState('error'
+,t.message or'Unknown error')end,function()task.spawn(function()while not b.
+scriptLoaded do print'loader: waiting for script to load'task.wait(e.
+LOADER_MAX_WAIT_TIME)if b.scriptLoaded then print'loader: script loaded'return
+end local r=j(game.PlaceId,true)if r then c.script_id=r print
+'loader: retrying script load'c.load_script()end end end)end local v=function()
+local v=h()or o()if i()then if v then getgenv().script_key=v end local w=j(game.
+PlaceId,true)if w then c.script_id=w c.load_script()end u()return end if r()then
+return end d.init{ASSET_ID=e.LOGO_ASSET_ID,FOOTER_TEXT=e.FOOTER_TEXT,
+GET_KEY_CALLBACK=s,KEY_SUBMIT_CALLBACK=t}if v then d.setKeyText(v)end end repeat
+wait(1)until game:IsLoaded()and game:GetService'Players'.LocalPlayer v()
