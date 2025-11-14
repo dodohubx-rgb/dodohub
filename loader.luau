@@ -8,7 +8,7 @@
 --]]
 
 __BUILD = {
-    DATE = "2025-10-23 23:10:30",
+    DATE = "2025-11-14 23:21:59",
     VERSION = "v0.0.0",
     CONFIG = "Release",
 }
@@ -204,7 +204,7 @@ LOGO_ASSET_ID='94126317688222',FOOTER_TEXT='DODOHUB | .gg/Esq624R7FB',
 GET_KEY_URL=[[https://ads.luarmor.net/get_key?for=dodohub__ads-oeruTshXacdj]],
 LOADER_URL=
 [[https://raw.githubusercontent.com/dodohubx-rgb/dodohub/refs/heads/main/loader.luau]]
-,LOADER_MAX_WAIT_TIME=60},{ads={[105555311806207]=
+,LOADER_MAX_WAIT_TIME=180},{ads={[105555311806207]=
 'a05bf6f6f0615db868a8d25c1f1c67b2',[122826953758426]=
 'd237e7bf18b1113b1a22733af557c3a2'},premium={[105555311806207]=
 '7588dbfaad66bed7ea5e339650f903cd',[122826953758426]=
