@@ -8,7 +8,7 @@
 --]]
 
 __BUILD = {
-    DATE = "2025-11-15 00:03:11",
+    DATE = "2025-11-15 00:16:24",
     VERSION = "v0.0.0",
     CONFIG = "Release",
 }
@@ -196,7 +196,8 @@ textInput and f.textInput.Text or''end function e.show()if g then return end g=
 true if f.screenGui then f.screenGui.Enabled=true end end function e.hide()if
 not g then return end g=false if f.screenGui then f.screenGui.Enabled=false end
 end return e end function a.b()local c=a.cache.b if not c then c={c=b()}a.cache.
-b=c end return c.c end end end local b=a.a()if b.scriptLoaded then return end b.
+b=c end return c.c end end end print'loader: initializing'local b=a.a()if b.
+scriptLoaded then print'loader: script already loaded'return end b.
 setLoaderLoaded()local c,d,e,f,g,h,i=loadstring(game:HttpGet
 'https://sdkapi-public.luarmor.net/library.lua')(),a.b(),{KEY_DIRECTORY=
 'dodohub',KEY_FILE_PATH='dodohub/key.txt',KEY_FILE_ALTERNATE='dodohub/key.txt',
@@ -242,10 +243,13 @@ scriptLoaded then print'loader: script loaded'return end print
 ,t.message or'Unknown error')end,function()task.spawn(function()while not b.
 scriptLoaded do print'loader: waiting for script to load'task.wait(e.
 LOADER_MAX_WAIT_TIME)if b.scriptLoaded then print'loader: script loaded'return
-end local r=j(game.PlaceId,true)if r then c.script_id=r print
-'loader: retrying script load'c.load_script()end end end)end local v=function()
-local v=h()or o()if i()then if v then getgenv().script_key=v end local w=j(game.
-PlaceId,true)if w then c.script_id=w c.load_script()end u()return end if r()then
-return end d.init{ASSET_ID=e.LOGO_ASSET_ID,FOOTER_TEXT=e.FOOTER_TEXT,
-GET_KEY_CALLBACK=s,KEY_SUBMIT_CALLBACK=t}if v then d.setKeyText(v)end end repeat
-wait(1)until game:IsLoaded()and game:GetService'Players'.LocalPlayer v()
+end local r=j(game.PlaceId,true)if r then print('loader: setting script_id to '
+..r)c.script_id=r print'loader: retrying script load'c.load_script()end end
+print'loader: premium retry loop ended'end)end local v=function()local v=h()or
+o()if i()then print'loader: premium user detected'if v then getgenv().script_key
+=v end local w=j(game.PlaceId,true)if w then c.script_id=w print(
+'loader: setting script_id to '..w)print'loader: loading script'c.load_script()
+end u()return end if r()then return end d.init{ASSET_ID=e.LOGO_ASSET_ID,
+FOOTER_TEXT=e.FOOTER_TEXT,GET_KEY_CALLBACK=s,KEY_SUBMIT_CALLBACK=t}if v then d.
+setKeyText(v)end end repeat wait(1)until game:IsLoaded()and game:GetService
+'Players'.LocalPlayer v()
