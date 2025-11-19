@@ -8,7 +8,7 @@
 --]]
 
 __BUILD = {
-    DATE = "2025-11-19 17:53:00",
+    DATE = "2025-11-19 17:57:51",
     VERSION = "v0.0.0",
     CONFIG = "Release",
 }
@@ -196,45 +196,45 @@ textInput and f.textInput.Text or''end function e.show()if g then return end g=
 true if f.screenGui then f.screenGui.Enabled=true end end function e.hide()if
 not g then return end g=false if f.screenGui then f.screenGui.Enabled=false end
 end return e end function a.b()local c=a.cache.b if not c then c={c=b()}a.cache.
-b=c end return c.c end end end local b,c,d,e,f,g,h=game:GetService'Players',game
-:GetService'RunService',game:GetService'HttpService',a.a(),a.b(),loadstring(game
-:HttpGet'https://sdkapi-public.luarmor.net/library.lua')(),{Config={Directory=
-'dodohub',KeyFile='dodohub/key.txt',LogoId='94126317688222',FooterText=
-'DODOHUB | .gg/Esq624R7FB',GetKeyUrl=
+b=c end return c.c end end end local b,c,d,e,f=game:GetService'Players',game:
+GetService'RunService',game:GetService'HttpService',a.a(),a.b()print
+'loader: initializing'if e.loaderLoaded then print
+'loader: loader already loaded'return end if e.scriptLoaded then print
+'loader: script already loaded'return end e.setLoaderLoaded()local g,h,i=
+loadstring(game:HttpGet'https://sdkapi-public.luarmor.net/library.lua')(),{
+Config={Directory='dodohub',KeyFile='dodohub/key.txt',LogoId='94126317688222',
+FooterText='DODOHUB | .gg/Esq624R7FB',GetKeyUrl=
 [[https://ads.luarmor.net/get_key?for=dodohub__ads-oeruTshXacdj]],ScriptUrl=
 [[https://raw.githubusercontent.com/dodohubx-rgb/dodohub/refs/heads/main/loader.luau]]
 ,WaitTime=180},Games={Ads={[105555311806207]='a05bf6f6f0615db868a8d25c1f1c67b2',
 [122826953758426]='d237e7bf18b1113b1a22733af557c3a2'},Premium={[105555311806207]
 ='7588dbfaad66bed7ea5e339650f903cd',[122826953758426]=
-'c46d1914040bfb845c98147bdad3a013'}}}print'loader: initializing'if e.
-loaderLoaded then print'loader: loader already loaded'return end if e.
-scriptLoaded then print'loader: script already loaded'return end e.
-setLoaderLoaded()local i={}function i.hasFunction(j)return typeof(j)=='function'
-end function i.isPremium()return premium==true end function i.getEnvKey()if
-typeof(getgenv().script_key)=='string'and getgenv().script_key~=''then return
-getgenv().script_key end if typeof(script_key)=='string'and script_key~=''then
-return script_key end return nil end function i.getScriptId(j,k)local l=k and h.
-Games.Premium or h.Games.Ads return l[j]end function i.tableToString(j)if
-typeof(j)~='table'then return'nil'end local k={}for l,m in pairs(j)do local n,o=
-typeof(l)=='string'and string.format('[%q]',l)or string.format('[%s]',tostring(l
-))if typeof(m)=='string'then o=string.format('%q',m)elseif typeof(m)=='boolean'
-or typeof(m)=='number'then o=tostring(m)elseif typeof(m)=='table'then o=i.
-tableToString(m)end if o then table.insert(k,string.format('%s=%s',n,o))end end
-return'{'..table.concat(k,',')..'}'end local j={}function j.ensureDirectory()if
-i.hasFunction(isfolder)and isfolder(h.Config.Directory)then return true end if i
-.hasFunction(makefolder)then pcall(makefolder,h.Config.Directory)return true end
-return false end function j.readFile(k)if not i.hasFunction(readfile)then return
-nil end local l,m=pcall(readfile,k)if l and typeof(m)=='string'and m~=''then
-return m end return nil end function j.writeFile(k,l)if not j.ensureDirectory()
-then return false end if i.hasFunction(writefile)then return pcall(writefile,k,l
-)end if i.hasFunction(delfile)then pcall(delfile,k)end if i.hasFunction(
-appendfile)then return pcall(appendfile,k,l)end return false end local k={}
-function k.saveKey(l)return j.writeFile(h.Config.KeyFile,l)end function k.
-loadKey()return j.readFile(h.Config.KeyFile)end function k.validateKey(l,m)g.
-script_id=m return g.check_key(l)end function k.loadScript(l)g.script_id=l g.
-load_script()end function k.setupAutoExecute()pcall(function()if
-queue_on_teleport then local l,m,n=i.getEnvKey(),i.isPremium(),getgenv().
-g_config local o=n and i.tableToString(n)or'nil'local p=(
+'c46d1914040bfb845c98147bdad3a013'}}},{}function i.hasFunction(j)return typeof(j
+)=='function'end function i.isPremium()return premium==true end function i.
+getEnvKey()if typeof(getgenv().script_key)=='string'and getgenv().script_key~=''
+then return getgenv().script_key end if typeof(script_key)=='string'and
+script_key~=''then return script_key end return nil end function i.getScriptId(j
+,k)local l=k and h.Games.Premium or h.Games.Ads return l[j]end function i.
+tableToString(j)if typeof(j)~='table'then return'nil'end local k={}for l,m in
+pairs(j)do local n,o=typeof(l)=='string'and string.format('[%q]',l)or string.
+format('[%s]',tostring(l))if typeof(m)=='string'then o=string.format('%q',m)
+elseif typeof(m)=='boolean'or typeof(m)=='number'then o=tostring(m)elseif
+typeof(m)=='table'then o=i.tableToString(m)end if o then table.insert(k,string.
+format('%s=%s',n,o))end end return'{'..table.concat(k,',')..'}'end local j={}
+function j.ensureDirectory()if i.hasFunction(isfolder)and isfolder(h.Config.
+Directory)then return true end if i.hasFunction(makefolder)then pcall(makefolder
+,h.Config.Directory)return true end return false end function j.readFile(k)if
+not i.hasFunction(readfile)then return nil end local l,m=pcall(readfile,k)if l
+and typeof(m)=='string'and m~=''then return m end return nil end function j.
+writeFile(k,l)if not j.ensureDirectory()then return false end if i.hasFunction(
+writefile)then return pcall(writefile,k,l)end if i.hasFunction(delfile)then
+pcall(delfile,k)end if i.hasFunction(appendfile)then return pcall(appendfile,k,l
+)end return false end local k={}function k.saveKey(l)return j.writeFile(h.Config
+.KeyFile,l)end function k.loadKey()return j.readFile(h.Config.KeyFile)end
+function k.validateKey(l,m)g.script_id=m return g.check_key(l)end function k.
+loadScript(l)g.script_id=l g.load_script()end function k.setupAutoExecute()
+pcall(function()if queue_on_teleport then local l,m,n=i.getEnvKey(),i.isPremium(
+),getgenv().g_config local o=n and i.tableToString(n)or'nil'local p=(
 [[script_key=%s;premium=%s;getgenv().g_config=%s;loadstring(game:HttpGet(%q))()]]
 ):format(l and string.format('%q',l)or'nil',m and'true'or'false',o,h.Config.
 ScriptUrl)print('script_url: ',p)queue_on_teleport(p)end end)end function k.
