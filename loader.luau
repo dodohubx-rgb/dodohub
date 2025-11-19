@@ -8,7 +8,7 @@
 --]]
 
 __BUILD = {
-    DATE = "2025-11-19 17:32:02",
+    DATE = "2025-11-19 17:41:25",
     VERSION = "v0.0.0",
     CONFIG = "Release",
 }
@@ -213,28 +213,34 @@ end function i.isPremium()return premium==true end function i.getEnvKey()if
 typeof(getgenv().script_key)=='string'and getgenv().script_key~=''then return
 getgenv().script_key end if typeof(script_key)=='string'and script_key~=''then
 return script_key end return nil end function i.getScriptId(j,k)local l=k and h.
-Games.Premium or h.Games.Ads return l[j]end local j={}function j.ensureDirectory
-()if i.hasFunction(isfolder)and isfolder(h.Config.Directory)then return true end
-if i.hasFunction(makefolder)then pcall(makefolder,h.Config.Directory)return true
-end return false end function j.readFile(k)if not i.hasFunction(readfile)then
-return nil end local l,m=pcall(readfile,k)if l and typeof(m)=='string'and m~=''
-then return m end return nil end function j.writeFile(k,l)if not j.
-ensureDirectory()then return false end if i.hasFunction(writefile)then return
-pcall(writefile,k,l)end if i.hasFunction(delfile)then pcall(delfile,k)end if i.
-hasFunction(appendfile)then return pcall(appendfile,k,l)end return false end
-local k={}function k.saveKey(l)return j.writeFile(h.Config.KeyFile,l)end
-function k.loadKey()return j.readFile(h.Config.KeyFile)end function k.
-validateKey(l,m)g.script_id=m return g.check_key(l)end function k.loadScript(l)g
-.script_id=l g.load_script()end function k.setupAutoExecute()pcall(function()if
-queue_on_teleport then local l,m=i.getEnvKey(),i.isPremium()local n=(
+Games.Premium or h.Games.Ads return l[j]end function i.tableToString(j)if
+typeof(j)~='table'then return'nil'end local k={}for l,m in pairs(j)do local n,o=
+typeof(l)=='string'and string.format('[%q]',l)or string.format('[%s]',tostring(l
+))if typeof(m)=='string'then o=string.format('%q',m)elseif typeof(m)=='boolean'
+or typeof(m)=='number'then o=tostring(m)elseif typeof(m)=='table'then o=i.
+tableToString(m)end if o then table.insert(k,string.format('%s=%s',n,o))end end
+return'{'..table.concat(k,',')..'}'end local j={}function j.ensureDirectory()if
+i.hasFunction(isfolder)and isfolder(h.Config.Directory)then return true end if i
+.hasFunction(makefolder)then pcall(makefolder,h.Config.Directory)return true end
+return false end function j.readFile(k)if not i.hasFunction(readfile)then return
+nil end local l,m=pcall(readfile,k)if l and typeof(m)=='string'and m~=''then
+return m end return nil end function j.writeFile(k,l)if not j.ensureDirectory()
+then return false end if i.hasFunction(writefile)then return pcall(writefile,k,l
+)end if i.hasFunction(delfile)then pcall(delfile,k)end if i.hasFunction(
+appendfile)then return pcall(appendfile,k,l)end return false end local k={}
+function k.saveKey(l)return j.writeFile(h.Config.KeyFile,l)end function k.
+loadKey()return j.readFile(h.Config.KeyFile)end function k.validateKey(l,m)g.
+script_id=m return g.check_key(l)end function k.loadScript(l)g.script_id=l g.
+load_script()end function k.setupAutoExecute()pcall(function()if
+queue_on_teleport then local l,m,n=i.getEnvKey(),i.isPremium(),getgenv().
+g_config local o=n and i.tableToString(n)or'nil'local p=(
 [[script_key=%s;premium=%s;getgenv().g_config=%s;loadstring(game:HttpGet(%q))()]]
-):format(l and string.format('%q',l)or'nil',m and'true'or'false',getgenv().
-g_config and d:JSONEncode(getgenv().g_config)or'nil',h.Config.ScriptUrl)print(
-'script_url: ',n)queue_on_teleport(n)end end)end function k.startRetryLoop(l)
-task.spawn(function()local m=i.getScriptId(game.PlaceId,l)if not m then print
-'loader: no script id found for retry loop'return end while not e.scriptLoaded
-do print'loader: waiting for script to load'task.wait(h.Config.WaitTime)if e.
-scriptLoaded then print'loader: script loaded'return end print
+):format(l and string.format('%q',l)or'nil',m and'true'or'false',o,h.Config.
+ScriptUrl)print('script_url: ',p)queue_on_teleport(p)end end)end function k.
+startRetryLoop(l)task.spawn(function()local m=i.getScriptId(game.PlaceId,l)if
+not m then print'loader: no script id found for retry loop'return end while not
+e.scriptLoaded do print'loader: waiting for script to load'task.wait(h.Config.
+WaitTime)if e.scriptLoaded then print'loader: script loaded'return end print
 'loader: retrying script load'k.loadScript(m)end end)end local l={}function l.
 onGetKey()if i.hasFunction(setclipboard)then pcall(setclipboard,h.Config.
 GetKeyUrl)end end function l.onSubmit(m)f.setState'validating'local n=i.
