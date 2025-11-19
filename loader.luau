@@ -8,7 +8,7 @@
 --]]
 
 __BUILD = {
-    DATE = "2025-11-15 00:21:27",
+    DATE = "2025-11-19 17:32:02",
     VERSION = "v0.0.0",
     CONFIG = "Release",
 }
@@ -196,60 +196,63 @@ textInput and f.textInput.Text or''end function e.show()if g then return end g=
 true if f.screenGui then f.screenGui.Enabled=true end end function e.hide()if
 not g then return end g=false if f.screenGui then f.screenGui.Enabled=false end
 end return e end function a.b()local c=a.cache.b if not c then c={c=b()}a.cache.
-b=c end return c.c end end end print'loader: initializing'local b=a.a()if b.
-scriptLoaded then print'loader: script already loaded'return end b.
-setLoaderLoaded()local c,d,e,f,g,h,i=loadstring(game:HttpGet
-'https://sdkapi-public.luarmor.net/library.lua')(),a.b(),{KEY_DIRECTORY=
-'dodohub',KEY_FILE_PATH='dodohub/key.txt',KEY_FILE_ALTERNATE='dodohub/key.txt',
-LOGO_ASSET_ID='94126317688222',FOOTER_TEXT='DODOHUB | .gg/Esq624R7FB',
-GET_KEY_URL=[[https://ads.luarmor.net/get_key?for=dodohub__ads-oeruTshXacdj]],
-LOADER_URL=
+b=c end return c.c end end end local b,c,d,e,f,g,h=game:GetService'Players',game
+:GetService'RunService',game:GetService'HttpService',a.a(),a.b(),loadstring(game
+:HttpGet'https://sdkapi-public.luarmor.net/library.lua')(),{Config={Directory=
+'dodohub',KeyFile='dodohub/key.txt',LogoId='94126317688222',FooterText=
+'DODOHUB | .gg/Esq624R7FB',GetKeyUrl=
+[[https://ads.luarmor.net/get_key?for=dodohub__ads-oeruTshXacdj]],ScriptUrl=
 [[https://raw.githubusercontent.com/dodohubx-rgb/dodohub/refs/heads/main/loader.luau]]
-,LOADER_MAX_WAIT_TIME=180},{ads={[105555311806207]=
-'a05bf6f6f0615db868a8d25c1f1c67b2',[122826953758426]=
-'d237e7bf18b1113b1a22733af557c3a2'},premium={[105555311806207]=
-'7588dbfaad66bed7ea5e339650f903cd',[122826953758426]=
-'c46d1914040bfb845c98147bdad3a013'}},function(c)return typeof(c)=='function'end,
-function()if typeof(script_key)=='string'and script_key~=''then return
-script_key end return nil end,function()return premium==true end local j,k,l,m=
-function(j,k)local l=k and f.premium or f.ads return l[j]end,function()if g(
-isfolder)then local j,k=pcall(isfolder,e.KEY_DIRECTORY)if j and k then return
-true end end if g(makefolder)then return pcall(makefolder,e.KEY_DIRECTORY)end
-return false end,function(j)if g(isfile)then local k,l=pcall(isfile,j)return k
-and l end if g(readfile)then local k=pcall(readfile,j)return k end return false
-end,function(j)if not g(readfile)then return nil end local k,l=pcall(readfile,j)
-if k and typeof(l)=='string'and l~=''then return l end return nil end local n,o=
-function(n,o)if not k()then return false end if g(writefile)then return pcall(
-writefile,n,o)end if g(delfile)then pcall(delfile,n)end if g(appendfile)then
-return pcall(appendfile,n,o)end return false end,function()if l(e.KEY_FILE_PATH)
-then local n=m(e.KEY_FILE_PATH)if n then return n end end if l(e.
-KEY_FILE_ALTERNATE)then return m(e.KEY_FILE_ALTERNATE)end return nil end local p
-,q=function(p)return n(e.KEY_FILE_PATH,p)end,function(p,q)c.script_id=q return c
-.check_key(p)end local r,s,t,u=function()local r=h()or o()if not r then return
-false end local s=j(game.PlaceId,i())if not s then return false end local t=q(r,
-s)if t and t.code=='KEY_VALID'then getgenv().script_key=r c.load_script()return
-true end return false end,function()local r,s=pcall(getgenv)if r and typeof(s)==
-'table'and typeof(s.setclipboard)=='function'then pcall(s.setclipboard,e.
-GET_KEY_URL)end end,function(r)d.setState'validating'local s=j(game.PlaceId,i())
-if not s then d.setState('error','Unsupported game')return end local t=q(r,s)if
-not t then d.setState('error','Validation failed')return end if t.code==
-'KEY_VALID'then d.destroy()getgenv().script_key=r p(r)print
-'loader: loading script'c.load_script()if i()then startPremiumRetryLoop()else
-task.spawn(function()while not b.scriptLoaded do print
-'loader: waiting for script to load'task.wait(e.LOADER_MAX_WAIT_TIME)if b.
+,WaitTime=180},Games={Ads={[105555311806207]='a05bf6f6f0615db868a8d25c1f1c67b2',
+[122826953758426]='d237e7bf18b1113b1a22733af557c3a2'},Premium={[105555311806207]
+='7588dbfaad66bed7ea5e339650f903cd',[122826953758426]=
+'c46d1914040bfb845c98147bdad3a013'}}}print'loader: initializing'if e.
+scriptLoaded then print'loader: script already loaded'return end e.
+setLoaderLoaded()local i={}function i.hasFunction(j)return typeof(j)=='function'
+end function i.isPremium()return premium==true end function i.getEnvKey()if
+typeof(getgenv().script_key)=='string'and getgenv().script_key~=''then return
+getgenv().script_key end if typeof(script_key)=='string'and script_key~=''then
+return script_key end return nil end function i.getScriptId(j,k)local l=k and h.
+Games.Premium or h.Games.Ads return l[j]end local j={}function j.ensureDirectory
+()if i.hasFunction(isfolder)and isfolder(h.Config.Directory)then return true end
+if i.hasFunction(makefolder)then pcall(makefolder,h.Config.Directory)return true
+end return false end function j.readFile(k)if not i.hasFunction(readfile)then
+return nil end local l,m=pcall(readfile,k)if l and typeof(m)=='string'and m~=''
+then return m end return nil end function j.writeFile(k,l)if not j.
+ensureDirectory()then return false end if i.hasFunction(writefile)then return
+pcall(writefile,k,l)end if i.hasFunction(delfile)then pcall(delfile,k)end if i.
+hasFunction(appendfile)then return pcall(appendfile,k,l)end return false end
+local k={}function k.saveKey(l)return j.writeFile(h.Config.KeyFile,l)end
+function k.loadKey()return j.readFile(h.Config.KeyFile)end function k.
+validateKey(l,m)g.script_id=m return g.check_key(l)end function k.loadScript(l)g
+.script_id=l g.load_script()end function k.setupAutoExecute()pcall(function()if
+queue_on_teleport then local l,m=i.getEnvKey(),i.isPremium()local n=(
+[[script_key=%s;premium=%s;getgenv().g_config=%s;loadstring(game:HttpGet(%q))()]]
+):format(l and string.format('%q',l)or'nil',m and'true'or'false',getgenv().
+g_config and d:JSONEncode(getgenv().g_config)or'nil',h.Config.ScriptUrl)print(
+'script_url: ',n)queue_on_teleport(n)end end)end function k.startRetryLoop(l)
+task.spawn(function()local m=i.getScriptId(game.PlaceId,l)if not m then print
+'loader: no script id found for retry loop'return end while not e.scriptLoaded
+do print'loader: waiting for script to load'task.wait(h.Config.WaitTime)if e.
 scriptLoaded then print'loader: script loaded'return end print
-'loader: retrying script load'c.load_script()end end)end return end if t.code==
-'KEY_INVALID'then d.setState('error','Invalid key')return end d.setState('error'
-,t.message or'Unknown error')end,function()task.spawn(function()while not b.
-scriptLoaded do print'loader: waiting for script to load'task.wait(e.
-LOADER_MAX_WAIT_TIME)if b.scriptLoaded then print'loader: script loaded'return
-end local r=j(game.PlaceId,true)if r then print('loader: setting script_id to '
-..r)c.script_id=r print'loader: retrying script load'c.load_script()end end
-print'loader: premium retry loop ended'end)end local v=function()local v=h()or
-o()if i()then print'loader: premium user detected'if v then getgenv().script_key
-=v end local w=j(game.PlaceId,true)if w then c.script_id=w print(
-'loader: setting script_id to '..w)print'loader: loading script'c.load_script()
-end u()return end if r()then return end d.init{ASSET_ID=e.LOGO_ASSET_ID,
-FOOTER_TEXT=e.FOOTER_TEXT,GET_KEY_CALLBACK=s,KEY_SUBMIT_CALLBACK=t}if v then d.
-setKeyText(v)end end repeat wait(1)until game:IsLoaded()and game:GetService
-'Players'.LocalPlayer v()
+'loader: retrying script load'k.loadScript(m)end end)end local l={}function l.
+onGetKey()if i.hasFunction(setclipboard)then pcall(setclipboard,h.Config.
+GetKeyUrl)end end function l.onSubmit(m)f.setState'validating'local n=i.
+getScriptId(game.PlaceId,i.isPremium())if not n then f.setState('error',
+'Unsupported Game')return end local o=k.validateKey(m,n)if not o then f.
+setState('error','Connection Failed')return end if o.code=='KEY_VALID'then f.
+destroy()getgenv().script_key=m k.saveKey(m)print'loader: loading script'k.
+loadScript(n)k.startRetryLoop(false)return end if o.code=='KEY_INVALID'then f.
+setState('error','Invalid Key')return end f.setState('error',o.message or
+'Unknown Error')end local m=function()if not game:IsLoaded()then game.Loaded:
+Wait()end local m=b.LocalPlayer if not m then m=b:GetPropertyChangedSignal
+'LocalPlayer':Wait()end k.setupAutoExecute()if i.isPremium()then print
+'loader: premium user detected'local n=i.getEnvKey()or k.loadKey()if n then
+getgenv().script_key=n end local o=i.getScriptId(game.PlaceId,true)if o then
+print'loader: loading premium script'k.loadScript(o)end k.startRetryLoop(true)
+return end local n,o=i.getEnvKey()or k.loadKey(),i.getScriptId(game.PlaceId,
+false)if n and o then local p=k.validateKey(n,o)if p and p.code=='KEY_VALID'then
+print'loader: auto-auth successful'getgenv().script_key=n k.loadScript(o)k.
+startRetryLoop(false)return end end f.init{ASSET_ID=h.Config.LogoId,FOOTER_TEXT=
+h.Config.FooterText,GET_KEY_CALLBACK=l.onGetKey,KEY_SUBMIT_CALLBACK=l.onSubmit}
+if n then f.setKeyText(n)end end m()
