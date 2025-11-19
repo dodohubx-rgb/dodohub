@@ -8,7 +8,7 @@
 --]]
 
 __BUILD = {
-    DATE = "2025-11-19 17:41:25",
+    DATE = "2025-11-19 17:53:00",
     VERSION = "v0.0.0",
     CONFIG = "Release",
 }
@@ -207,6 +207,7 @@ b=c end return c.c end end end local b,c,d,e,f,g,h=game:GetService'Players',game
 [122826953758426]='d237e7bf18b1113b1a22733af557c3a2'},Premium={[105555311806207]
 ='7588dbfaad66bed7ea5e339650f903cd',[122826953758426]=
 'c46d1914040bfb845c98147bdad3a013'}}}print'loader: initializing'if e.
+loaderLoaded then print'loader: loader already loaded'return end if e.
 scriptLoaded then print'loader: script already loaded'return end e.
 setLoaderLoaded()local i={}function i.hasFunction(j)return typeof(j)=='function'
 end function i.isPremium()return premium==true end function i.getEnvKey()if
