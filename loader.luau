@@ -8,7 +8,7 @@
 --]]
 
 __BUILD = {
-    DATE = "2025-11-19 17:57:51",
+    DATE = "2025-11-28 17:29:12",
     VERSION = "v0.0.0",
     CONFIG = "Release",
 }
@@ -207,9 +207,11 @@ FooterText='DODOHUB | .gg/Esq624R7FB',GetKeyUrl=
 [[https://ads.luarmor.net/get_key?for=dodohub__ads-oeruTshXacdj]],ScriptUrl=
 [[https://raw.githubusercontent.com/dodohubx-rgb/dodohub/refs/heads/main/loader.luau]]
 ,WaitTime=180},Games={Ads={[105555311806207]='a05bf6f6f0615db868a8d25c1f1c67b2',
-[122826953758426]='d237e7bf18b1113b1a22733af557c3a2'},Premium={[105555311806207]
-='7588dbfaad66bed7ea5e339650f903cd',[122826953758426]=
-'c46d1914040bfb845c98147bdad3a013'}}},{}function i.hasFunction(j)return typeof(j
+[122826953758426]='d237e7bf18b1113b1a22733af557c3a2',[118964498801249]=
+'ee58d625b1b387530d6e53e5cad24597'},Premium={[105555311806207]=
+'7588dbfaad66bed7ea5e339650f903cd',[122826953758426]=
+'c46d1914040bfb845c98147bdad3a013',[118964498801249]=
+'e06536982b98c3cba73da829d6b0502b'}}},{}function i.hasFunction(j)return typeof(j
 )=='function'end function i.isPremium()return premium==true end function i.
 getEnvKey()if typeof(getgenv().script_key)=='string'and getgenv().script_key~=''
 then return getgenv().script_key end if typeof(script_key)=='string'and
