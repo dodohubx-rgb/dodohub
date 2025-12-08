@@ -8,7 +8,7 @@
 --]]
 
 __BUILD = {
-    DATE = "2025-12-09 00:05:06",
+    DATE = "2025-12-09 00:10:12",
     VERSION = "v0.0.0",
     CONFIG = "Release",
 }
@@ -240,14 +240,14 @@ pcall(function()if queue_on_teleport then local l,m,n=i.getEnvKey(),i.isPremium(
 [[script_key=%s;premium=%s;getgenv().g_config=%s;loadstring(game:HttpGet(%q))()]]
 ):format(l and string.format('%q',l)or'nil',m and'true'or'false',o,h.Config.
 ScriptUrl)print('script_url: ',p)queue_on_teleport(p)end end)end function k.
-startRetryLoop(l)task.spawn(function()local m=i.getScriptId(game.PlaceId,l)if
-not m then print'loader: no script id found for retry loop'return end while not
-e.scriptLoaded do print'loader: waiting for script to load'task.wait(h.Config.
+startRetryLoop(l)task.spawn(function()local m=i.getScriptId(game.GameId,l)if not
+m then print'loader: no script id found for retry loop'return end while not e.
+scriptLoaded do print'loader: waiting for script to load'task.wait(h.Config.
 WaitTime)if e.scriptLoaded then print'loader: script loaded'return end print
 'loader: retrying script load'k.loadScript(m)end end)end local l={}function l.
 onGetKey()if i.hasFunction(setclipboard)then pcall(setclipboard,h.Config.
 GetKeyUrl)end end function l.onSubmit(m)f.setState'validating'local n=i.
-getScriptId(game.PlaceId,i.isPremium())if not n then f.setState('error',
+getScriptId(game.GameId,i.isPremium())if not n then f.setState('error',
 'Unsupported Game')return end local o=k.validateKey(m,n)if not o then f.
 setState('error','Connection Failed')return end if o.code=='KEY_VALID'then f.
 destroy()getgenv().script_key=m k.saveKey(m)print'loader: loading script'k.
@@ -257,10 +257,10 @@ setState('error','Invalid Key')return end f.setState('error',o.message or
 Wait()end local m=b.LocalPlayer if not m then m=b:GetPropertyChangedSignal
 'LocalPlayer':Wait()end k.setupAutoExecute()if i.isPremium()then print
 'loader: premium user detected'local n=i.getEnvKey()or k.loadKey()if n then
-getgenv().script_key=n end local o=i.getScriptId(game.PlaceId,true)if o then
+getgenv().script_key=n end local o=i.getScriptId(game.GameId,true)if o then
 print'loader: loading premium script'k.loadScript(o)end k.startRetryLoop(true)
-return end local n,o=i.getEnvKey()or k.loadKey(),i.getScriptId(game.PlaceId,
-false)if n and o then local p=k.validateKey(n,o)if p and p.code=='KEY_VALID'then
+return end local n,o=i.getEnvKey()or k.loadKey(),i.getScriptId(game.GameId,false
+)if n and o then local p=k.validateKey(n,o)if p and p.code=='KEY_VALID'then
 print'loader: auto-auth successful'getgenv().script_key=n k.loadScript(o)k.
 startRetryLoop(false)return end end f.init{ASSET_ID=h.Config.LogoId,FOOTER_TEXT=
 h.Config.FooterText,GET_KEY_CALLBACK=l.onGetKey,KEY_SUBMIT_CALLBACK=l.onSubmit}
