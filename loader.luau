@@ -8,7 +8,7 @@
 --]]
 
 __BUILD = {
-    DATE = "2025-12-09 00:11:30",
+    DATE = "2025-12-09 00:13:35",
     VERSION = "v0.0.0",
     CONFIG = "Release",
 }
@@ -206,12 +206,14 @@ Config={Directory='dodohub',KeyFile='dodohub/key.txt',LogoId='94126317688222',
 FooterText='DODOHUB | .gg/Esq624R7FB',GetKeyUrl=
 [[https://ads.luarmor.net/get_key?for=dodohub__ads-oeruTshXacdj]],ScriptUrl=
 [[https://raw.githubusercontent.com/dodohubx-rgb/dodohub/refs/heads/main/loader.luau]]
-,WaitTime=180},Games={Ads={[105555311806207]='a05bf6f6f0615db868a8d25c1f1c67b2',
-[122826953758426]='d237e7bf18b1113b1a22733af557c3a2',[118964498801249]=
-'ee58d625b1b387530d6e53e5cad24597'},Premium={[105555311806207]=
-'7588dbfaad66bed7ea5e339650f903cd',[122826953758426]=
-'c46d1914040bfb845c98147bdad3a013',[118964498801249]=
-'e06536982b98c3cba73da829d6b0502b'}}},{}function i.hasFunction(j)return typeof(j
+,WaitTime=180},Games={Ads={[8066283370]='a05bf6f6f0615db868a8d25c1f1c67b2',[
+8009328211]='d237e7bf18b1113b1a22733af557c3a2',[9106680644]=
+'ee58d625b1b387530d6e53e5cad24597',[7671049560]=
+'a71cc3f46d8ed54235520d70a6e6942f'},Premium={[8066283370]=
+'7588dbfaad66bed7ea5e339650f903cd',[8009328211]=
+'c46d1914040bfb845c98147bdad3a013',[9106680644]=
+'e06536982b98c3cba73da829d6b0502b',[7671049560]=
+'55dd04b484df6dab1c75588ab46c130a'}}},{}function i.hasFunction(j)return typeof(j
 )=='function'end function i.isPremium()return premium==true end function i.
 getEnvKey()if typeof(getgenv().script_key)=='string'and getgenv().script_key~=''
 then return getgenv().script_key end if typeof(script_key)=='string'and
